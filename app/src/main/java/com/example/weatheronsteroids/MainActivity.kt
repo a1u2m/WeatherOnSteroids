@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import com.example.weatheronsteroids.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.jakewharton.rxbinding4.view.clicks
 
 class MainActivity : AppCompatActivity() {
 
