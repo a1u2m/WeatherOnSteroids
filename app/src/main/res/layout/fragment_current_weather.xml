@@ -12,9 +12,9 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="4dp"
+        android:src="@drawable/ic_weather_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_weather_placeholder" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/description"
@@ -91,12 +91,26 @@
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:indeterminateTintMode="src_atop"
-        android:indeterminateTint="@color/primary_dark"
         android:layout_margin="16dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/primary_dark"
+        android:indeterminateTintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loading" />
+
+    <com.example.weatheronsteroids.secrettextview.SecretTextView
+        android:id="@+id/greetings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:ellipsize="marquee"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:textColor="@color/primary_dark"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

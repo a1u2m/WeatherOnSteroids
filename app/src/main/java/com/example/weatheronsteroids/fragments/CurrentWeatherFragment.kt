@@ -13,8 +13,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.OpenWeatherMapApi
 import com.example.weatheronsteroids.model.Response
+import com.example.weatheronsteroids.secrettextview.SecretTextView
 import com.squareup.picasso.Picasso
-import dagger.Lazy
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -22,6 +22,8 @@ import io.reactivex.rxjava3.subscribers.DisposableSubscriber
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 class CurrentWeatherFragment : Fragment() {
 
@@ -41,6 +43,7 @@ class CurrentWeatherFragment : Fragment() {
     lateinit var speed: AppCompatTextView
     lateinit var loading: AppCompatTextView
     lateinit var progressBar: ProgressBar
+    lateinit var greetings: SecretTextView
 
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
@@ -61,8 +64,38 @@ class CurrentWeatherFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         initViews()
-        val flowable: Flowable<Response> = api.getResponse(APP_ID, API_KEY, LANG, UNITS)
-        setupFlowable(flowable)
+
+        greetings.text = "${getGreeting()} ${resources.getString(R.string.user)}"
+        greetings.show()
+        hideGreetings()
+
+        val responseFlowable: Flowable<Response> = api.getResponse(APP_ID, API_KEY, LANG, UNITS)
+        setupFlowable(responseFlowable)
+    }
+
+    private fun hideGreetings() {
+        Flowable
+            .interval(1, TimeUnit.SECONDS)
+            .take(3)
+            .takeLast(1)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : DisposableSubscriber<Long>() {
+
+                override fun onNext(t: Long?) {
+                    //do nothing
+                }
+
+                override fun onComplete() {
+                    greetings.hide()
+                }
+
+                override fun onError(t: Throwable?) {
+                    if (t != null) {
+                        Log.d(TAG, "onError: ${t.message}")
+                    }
+                }
+            })
     }
 
     private fun setupFlowable(flowable: Flowable<Response>) {
@@ -120,5 +153,16 @@ class CurrentWeatherFragment : Fragment() {
         speed = requireActivity().findViewById(R.id.speed)
         loading = requireActivity().findViewById(R.id.loading)
         progressBar = requireActivity().findViewById(R.id.progress_bar)
+        greetings = requireActivity().findViewById(R.id.greetings)
+    }
+
+    private fun getGreeting(): String {
+        return when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+            0, 1, 2, 3, 4, 5, 6 -> resources.getString(R.string.good_night)
+            7, 8, 9, 10, 11, 12 -> resources.getString(R.string.good_morning)
+            13, 14, 15, 16, 17, 18 -> resources.getString(R.string.good_day)
+            19, 20, 21, 22, 23 -> resources.getString(R.string.good_evening)
+            else -> resources.getString(R.string.good_everything)
+        }
     }
 }

@@ -10,6 +10,10 @@
     <string name="speed">Скорость ветра: </string>
     <string name="loading">Идет получение данных погоды</string>
     <string name="error">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="good_morning">Доброе утро, </string>
+    <string name="good_day">Добрый день, </string>
+    <string name="good_evening">Добрый вечер, </string>
+    <string name="good_night">Доброй ночи, </string>
+    <string name="user">пользователь</string>
+    <string name="good_everything">Доброго времени суток</string>
 </resources>
