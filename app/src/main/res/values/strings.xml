@@ -16,4 +16,9 @@
     <string name="good_night">Доброй ночи, </string>
     <string name="user">пользователь</string>
     <string name="good_everything">Доброго времени суток</string>
+    <string name="enter_your_name_hint">Введите своё имя сюда</string>
+    <string name="enter_your_name_text_view">Введите своё имя чтобы приложение знало, как к вам обращаться</string>
+
+    <string name="user_name_key">user_name_key</string>
+    <string name="become_incognito">Стать инкогнито</string>
 </resources>

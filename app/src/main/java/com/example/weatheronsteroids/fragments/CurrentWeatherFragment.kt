@@ -1,5 +1,6 @@
 package com.example.weatheronsteroids.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -67,7 +68,9 @@ class CurrentWeatherFragment : Fragment() {
         initViews()
 
         if ((activity as MainActivity).isCanGreet) {
-            greetings.text = "${getGreeting()} ${resources.getString(R.string.user)}"
+            val spName = getUserName()
+            Log.d(TAG, "$spName")
+            greetings.text = "${getGreeting()} ${if (spName != "user_name_key") spName else resources.getString(R.string.user)}"
             greetings.show()
             hideGreetings()
             (activity as MainActivity).isCanGreet = false
@@ -75,6 +78,12 @@ class CurrentWeatherFragment : Fragment() {
 
         val responseFlowable: Flowable<Response> = api.getResponse(APP_ID, API_KEY, LANG, UNITS)
         setupFlowable(responseFlowable)
+    }
+
+    private fun getUserName(): String? {
+        val sp = activity?.getPreferences(Context.MODE_PRIVATE)
+        val name = resources.getString(R.string.user_name_key)
+        return sp?.getString(getString(R.string.user_name_key), name)
     }
 
     private fun hideGreetings() {
