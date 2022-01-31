@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     private var fragment = Fragment()
 
+    var isCanGreet = true
+
     private lateinit var bottomPanel: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,34 +36,55 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavigationMenu(menu: MenuItem) = when (menu.itemId) {
         R.id.current_weather -> {
-            fragment = CurrentWeatherFragment()
-            showFragment(fragment, R.id.fragment_container)
-            true
+            if (fragment !is CurrentWeatherFragment) {
+                fragment = CurrentWeatherFragment()
+                showFragment(fragment, R.id.fragment_container)
+                true
+            } else {
+                false
+            }
         }
 
         R.id.five_days_forecast -> {
-            fragment = WeatherForecastFragment()
-            showFragment(fragment, R.id.fragment_container)
-            true
+            if (fragment !is WeatherForecastFragment) {
+                fragment = WeatherForecastFragment()
+                showFragment(fragment, R.id.fragment_container)
+                true
+            } else {
+                false
+            }
         }
 
         R.id.weather_map -> {
-            fragment = WeatherMapFragment()
-            showFragment(fragment, R.id.fragment_container)
-            true
+            if (fragment !is WeatherMapFragment) {
+                fragment = WeatherMapFragment()
+                showFragment(fragment, R.id.fragment_container)
+                true
+            } else {
+                false
+            }
         }
 
         R.id.air_pollution -> {
-            fragment = AirPollutionFragment()
-            showFragment(fragment, R.id.fragment_container)
-            true
+            if (fragment !is AirPollutionFragment) {
+                fragment = AirPollutionFragment()
+                showFragment(fragment, R.id.fragment_container)
+                true
+            } else {
+                false
+            }
         }
 
         R.id.settings -> {
-            fragment = SettingsFragment()
-            showFragment(fragment, R.id.fragment_container)
-            true
+            if (fragment !is SettingsFragment) {
+                fragment = SettingsFragment()
+                showFragment(fragment, R.id.fragment_container)
+                true
+            } else {
+                false
+            }
         }
+
         else -> false
     }
 

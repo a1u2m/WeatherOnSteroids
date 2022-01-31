@@ -10,6 +10,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import com.example.weatheronsteroids.MainActivity
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.OpenWeatherMapApi
 import com.example.weatheronsteroids.model.Response
@@ -65,9 +66,12 @@ class CurrentWeatherFragment : Fragment() {
 
         initViews()
 
-        greetings.text = "${getGreeting()} ${resources.getString(R.string.user)}"
-        greetings.show()
-        hideGreetings()
+        if ((activity as MainActivity).isCanGreet) {
+            greetings.text = "${getGreeting()} ${resources.getString(R.string.user)}"
+            greetings.show()
+            hideGreetings()
+            (activity as MainActivity).isCanGreet = false
+        }
 
         val responseFlowable: Flowable<Response> = api.getResponse(APP_ID, API_KEY, LANG, UNITS)
         setupFlowable(responseFlowable)
