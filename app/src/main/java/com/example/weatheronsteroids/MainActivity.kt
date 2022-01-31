@@ -1,5 +1,6 @@
 package com.example.weatheronsteroids
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,16 +14,28 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
     private var fragment = Fragment()
+    private lateinit var bottomPanel: BottomNavigationView
 
     var isCanGreet = true
+    var timeCount = 0
 
-    private lateinit var bottomPanel: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initViews()
+        countLaunch()
+    }
+
+    private fun countLaunch() {
+        val sp = getPreferences(MODE_PRIVATE)
+        var tempLaunchCount = sp.getInt(getString(R.string.launch_count_key), 0)
+        tempLaunchCount++
+        with(sp?.edit()) {
+            this?.putInt(getString(R.string.launch_count_key), tempLaunchCount)
+            this?.apply()
+        }
     }
 
     private fun initViews() {

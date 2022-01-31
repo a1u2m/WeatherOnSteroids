@@ -1,7 +1,6 @@
 package com.example.weatheronsteroids.fragments
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.secrettextview.SecretTextView
 import com.google.android.material.textfield.TextInputEditText
@@ -26,6 +27,8 @@ class SettingsFragment : Fragment() {
     lateinit var inputName: TextInputEditText
     lateinit var becomeIncognito: AppCompatButton
     lateinit var incognitoCongrats: SecretTextView
+    lateinit var launchCount: AppCompatTextView
+    lateinit var timeCount: AppCompatTextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +41,11 @@ class SettingsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         initViews()
+    }
+
+    private fun countLaunch(): Int {
+        val sp = requireActivity().getPreferences(AppCompatActivity.MODE_PRIVATE)
+        return sp.getInt(getString(R.string.launch_count_key), 0)
     }
 
     private fun initViews() {
@@ -66,6 +74,11 @@ class SettingsFragment : Fragment() {
             incognitoCongrats.show()
             hideGreetings()
         }
+
+        launchCount = requireActivity().findViewById(R.id.launch_count)
+        launchCount.text = "${resources.getString(R.string.app_launch_count)} ${countLaunch()}"
+
+        timeCount = requireActivity().findViewById(R.id.time_count)
     }
 
     private fun hideGreetings() {

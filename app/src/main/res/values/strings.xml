@@ -18,7 +18,12 @@
     <string name="good_everything">Доброго времени суток</string>
     <string name="enter_your_name_hint">Введите своё имя сюда</string>
     <string name="enter_your_name_text_view">Введите своё имя чтобы приложение знало, как к вам обращаться</string>
+    <string name="become_incognito">Стать инкогнито</string>
+    <string name="app_launch_count">Приложение было запущено столько раз:</string>
+    <string name="app_time_count">Столько времени проведено в приложении:</string>
 
     <string name="user_name_key">user_name_key</string>
-    <string name="become_incognito">Стать инкогнито</string>
+    <string name="launch_count_key">launch_count_key</string>
+    <string name="time_count_key">time_count_key</string>
+
 </resources>
