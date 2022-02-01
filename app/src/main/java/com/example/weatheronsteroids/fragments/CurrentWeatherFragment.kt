@@ -104,9 +104,7 @@ class CurrentWeatherFragment : Fragment() {
                 }
 
                 override fun onError(t: Throwable?) {
-                    if (t != null) {
-                        Log.d(TAG, "onError: ${t.message}")
-                    }
+                        Log.d(TAG, "onError: ${t?.message}")
                 }
             })
     }
@@ -171,10 +169,10 @@ class CurrentWeatherFragment : Fragment() {
 
     private fun getGreeting(): String {
         return when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
-            0, 1, 2, 3, 4, 5, 6 -> resources.getString(R.string.good_night)
-            7, 8, 9, 10, 11, 12 -> resources.getString(R.string.good_morning)
-            13, 14, 15, 16, 17, 18 -> resources.getString(R.string.good_day)
-            19, 20, 21, 22, 23 -> resources.getString(R.string.good_evening)
+            0, 1, 2, 3, 4, 5 -> resources.getString(R.string.good_night)
+            6, 7, 8, 9, 10, 11 -> resources.getString(R.string.good_morning)
+            12, 13, 14, 15, 16, 17 -> resources.getString(R.string.good_day)
+            18, 19, 20, 21, 22, 23 -> resources.getString(R.string.good_evening)
             else -> resources.getString(R.string.good_everything)
         }
     }

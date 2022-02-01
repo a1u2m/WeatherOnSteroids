@@ -39,7 +39,6 @@ class SettingsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         initViews()
     }
 
@@ -48,11 +47,41 @@ class SettingsFragment : Fragment() {
         return sp.getInt(getString(R.string.launch_count_key), 0)
     }
 
+    private fun countTime(): String {
+        val sp = requireActivity().getPreferences(AppCompatActivity.MODE_PRIVATE)
+        val time = sp.getInt(getString(R.string.time_count_key), 0)
+        return humanTime(time)
+    }
+
+    private fun humanTime(time: Int): String {
+        val hours: Int = time / 3600
+        val minutes: Int = (time - (hours * 3600)) / 60
+        val seconds: Int = time - hours * 3600 - minutes * 60
+
+        val sb = StringBuilder()
+        if (hours == 0) {
+            sb.append("00:")
+        } else {
+            sb.append("$hours:")
+        }
+        if (minutes == 0) {
+            sb.append("00:")
+        } else {
+            sb.append("$minutes:")
+        }
+        if (seconds == 0) {
+            sb.append("00")
+        } else {
+            sb.append("$seconds")
+        }
+        return sb.toString()
+    }
+
     private fun initViews() {
         incognitoCongrats = requireActivity().findViewById(R.id.incognito_congrats)
 
         inputName = requireActivity().findViewById(R.id.edit_name)
-        inputName.setOnEditorActionListener{ _, actionId, _ ->
+        inputName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val name = inputName.text.toString()
                 val sp = activity?.getPreferences(Context.MODE_PRIVATE)
@@ -79,6 +108,7 @@ class SettingsFragment : Fragment() {
         launchCount.text = "${resources.getString(R.string.app_launch_count)} ${countLaunch()}"
 
         timeCount = requireActivity().findViewById(R.id.time_count)
+        timeCount.text = "${resources.getString(R.string.app_time_count)} ${countTime()}"
     }
 
     private fun hideGreetings() {

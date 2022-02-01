@@ -8,6 +8,17 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.weatheronsteroids.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.observers.DisposableObserver
+import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subscribers.DisposableSubscriber
+import org.reactivestreams.Subscriber
+import org.reactivestreams.Subscription
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,13 +30,34 @@ class MainActivity : AppCompatActivity() {
     var isCanGreet = true
     var timeCount = 0
 
+    private val timeCountObservable = Observable.interval(1, TimeUnit.SECONDS)
+    private lateinit var timeCountDisposable: DisposableObserver<Long>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         initViews()
         countLaunch()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        createNewDisposableAndSubscribe()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        val sp = getPreferences(MODE_PRIVATE)
+        var tempTimeCount = sp.getInt(getString(R.string.time_count_key), 0)
+        tempTimeCount += timeCount
+        with(sp?.edit()) {
+            this?.putInt(getString(R.string.time_count_key), tempTimeCount)
+            this?.apply()
+        }
+        timeCountDisposable.dispose()
+
+        Log.d(TAG, "timeCount onPause")
     }
 
     private fun countLaunch() {
@@ -97,7 +129,6 @@ class MainActivity : AppCompatActivity() {
                 false
             }
         }
-
         else -> false
     }
 
@@ -108,4 +139,25 @@ class MainActivity : AppCompatActivity() {
         frame.commit()
         Log.d(TAG, "showfragment $fragment")
     }
+
+    private fun createNewDisposableAndSubscribe() {
+        timeCountDisposable = object : DisposableObserver<Long>() {
+
+            override fun onNext(t: Long?) {
+                Log.d(TAG, "timeCount: $t")
+                timeCount++
+            }
+
+            override fun onError(t: Throwable?) {
+                Log.d(TAG, "timeCount onError: ${t?.message}")
+            }
+
+            override fun onComplete() {
+                Log.d(TAG, "timeCount onComplete")
+            }
+        }
+        timeCountObservable.subscribe(timeCountDisposable)
+    }
 }
+
+
