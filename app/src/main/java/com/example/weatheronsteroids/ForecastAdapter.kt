@@ -26,7 +26,7 @@ class ForecastAdapter(private val context: Context, private val list: List<Respo
         val pictureLink =
             "https://openweathermap.org/img/wn/${responseList.weather[0].icon}@2x.png"
 
-        holder.timeAndDate.text = "${context.resources.getString(R.string.time_and_date)} ${responseList.dt_txt}"
+        holder.timeAndDate.text = "${context.resources.getString(R.string.time_and_date)} ${transformDateToRussian(responseList)}"
         holder.description.text = "${context.resources.getString(R.string.description)} ${responseList.weather[0].description.capitalize()}"
         holder.temp.text = "${context.resources.getString(R.string.temp)} ${responseList.main.temp}°C"
         holder.feelsLike.text = "${context.resources.getString(R.string.feels_like)} ${responseList.main.feelsLike}°C"
@@ -42,6 +42,23 @@ class ForecastAdapter(private val context: Context, private val list: List<Respo
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    private fun transformDateToRussian(responseList: Response): StringBuilder {
+        val sb = StringBuilder()
+        val timeAndDate = responseList.dt_txt
+        val date = timeAndDate.substring(8, 10)
+        val month = timeAndDate.substring(5, 7)
+        val year = timeAndDate.substring(0, 4)
+        val time = timeAndDate.substring(11)
+        sb.append(date)
+        sb.append("-")
+        sb.append(month)
+        sb.append("-")
+        sb.append(year)
+        sb.append(" ")
+        sb.append(time)
+        return sb
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
