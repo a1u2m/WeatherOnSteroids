@@ -17,4 +17,8 @@ class Response {
     @Expose
     lateinit var wind: Wind
 
+    @SerializedName("dt_txt")
+    @Expose
+    lateinit var dt_txt: String
+
 }

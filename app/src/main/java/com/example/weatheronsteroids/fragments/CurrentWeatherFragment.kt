@@ -29,12 +29,12 @@ import java.util.concurrent.TimeUnit
 
 class CurrentWeatherFragment : Fragment() {
 
-    private val APP_ID = "511180"
+    private val TAG = "CurrentWeatherFragment"
+
+    private val ID = "511180"
     private val API_KEY = "3767cbc63512e48175b64b1b5664d14c"
     private val LANG = "ru"
     private val UNITS = "metric"
-
-    private val TAG = "CurrentWeatherFragment"
 
     lateinit var icon: AppCompatImageView
     lateinit var description: AppCompatTextView
@@ -76,7 +76,7 @@ class CurrentWeatherFragment : Fragment() {
             (activity as MainActivity).isCanGreet = false
         }
 
-        val responseFlowable: Flowable<Response> = api.getResponse(APP_ID, API_KEY, LANG, UNITS)
+        val responseFlowable: Flowable<Response> = api.getCurrentWeather(ID, API_KEY, LANG, UNITS)
         setupFlowable(responseFlowable)
     }
 
@@ -155,16 +155,16 @@ class CurrentWeatherFragment : Fragment() {
     }
 
     private fun initViews() {
-        icon = requireActivity().findViewById(R.id.icon)
-        description = requireActivity().findViewById(R.id.description)
-        temp = requireActivity().findViewById(R.id.temp)
-        feelsLike = requireActivity().findViewById(R.id.feels_like)
-        pressure = requireActivity().findViewById(R.id.pressure)
-        humidity = requireActivity().findViewById(R.id.humidity)
-        speed = requireActivity().findViewById(R.id.speed)
-        loading = requireActivity().findViewById(R.id.loading)
-        progressBar = requireActivity().findViewById(R.id.progress_bar)
-        greetings = requireActivity().findViewById(R.id.greetings)
+        icon = requireActivity().findViewById(R.id.icon_current)
+        description = requireActivity().findViewById(R.id.description_current)
+        temp = requireActivity().findViewById(R.id.temp_current)
+        feelsLike = requireActivity().findViewById(R.id.feels_like_current)
+        pressure = requireActivity().findViewById(R.id.pressure_current)
+        humidity = requireActivity().findViewById(R.id.humidity_current)
+        speed = requireActivity().findViewById(R.id.speed_current)
+        loading = requireActivity().findViewById(R.id.loading_current)
+        progressBar = requireActivity().findViewById(R.id.progress_bar_current)
+        greetings = requireActivity().findViewById(R.id.greetings_current)
     }
 
     private fun getGreeting(): String {

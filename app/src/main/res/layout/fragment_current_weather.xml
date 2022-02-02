@@ -8,7 +8,7 @@
     tools:context=".fragments.CurrentWeatherFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/icon"
+        android:id="@+id/icon_current"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="4dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/description"
+        android:id="@+id/description_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -27,57 +27,57 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/temp"
+        android:id="@+id/temp_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/temp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/description" />
+        app:layout_constraintTop_toBottomOf="@id/description_current" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/feels_like"
+        android:id="@+id/feels_like_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/feels_like"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/temp"
-        app:layout_constraintTop_toBottomOf="@id/description" />
+        app:layout_constraintStart_toEndOf="@id/temp_current"
+        app:layout_constraintTop_toBottomOf="@id/description_current" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/pressure"
+        android:id="@+id/pressure_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/pressure"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/temp" />
+        app:layout_constraintTop_toBottomOf="@id/temp_current" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/humidity"
+        android:id="@+id/humidity_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/humidity"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@id/pressure"
-        app:layout_constraintTop_toBottomOf="@id/temp" />
+        app:layout_constraintStart_toEndOf="@id/pressure_current"
+        app:layout_constraintTop_toBottomOf="@id/temp_current" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/speed"
+        android:id="@+id/speed_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/speed"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pressure" />
+        app:layout_constraintTop_toBottomOf="@id/pressure_current" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/loading"
+        android:id="@+id/loading_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -85,10 +85,10 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/speed" />
+        app:layout_constraintTop_toBottomOf="@id/speed_current" />
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/progress_bar_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -97,10 +97,10 @@
         android:indeterminateTintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loading" />
+        app:layout_constraintTop_toBottomOf="@id/loading_current" />
 
     <com.example.weatheronsteroids.secrettextview.SecretTextView
-        android:id="@+id/greetings"
+        android:id="@+id/greetings_current"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
