@@ -11,14 +11,14 @@
         android:id="@+id/recycler_forecast"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/standard_margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/loading_forecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/standard_margin"
         android:text="@string/loading"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,12 +29,11 @@
         android:id="@+id/progress_bar_forecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/standard_margin"
         android:indeterminate="true"
         android:indeterminateTint="@color/primary_dark"
         android:indeterminateTintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loading_forecast" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

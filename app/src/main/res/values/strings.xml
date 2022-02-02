@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Погода на стероидах</string>
 
+    <!-- Погодные данные -->
     <string name="description">Погода: </string>
     <string name="temp">Температура: </string>
     <string name="feels_like">Ощущается как: </string>
@@ -11,9 +12,11 @@
     <string name="speed">Скорость ветра: </string>
     <string name="time_and_date">Дата и время:</string>
 
+    <!-- Для состояния загрузки -->
     <string name="loading">Идет получение данных погоды</string>
     <string name="error">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
 
+    <!-- Для приветствия пользователей -->
     <string name="good_morning">Доброе утро, </string>
     <string name="good_day">Добрый день, </string>
     <string name="good_evening">Добрый вечер, </string>
@@ -21,12 +24,14 @@
     <string name="user">пользователь</string>
     <string name="good_everything">Доброго времени суток</string>
 
+    <!-- Для фрагмента настроек -->
     <string name="enter_your_name_hint">Введите своё имя сюда</string>
     <string name="enter_your_name_text_view">Введите своё имя чтобы приложение знало, как к вам обращаться</string>
     <string name="become_incognito">Стать инкогнито</string>
     <string name="app_launch_count">Приложение было запущено столько раз:</string>
     <string name="app_time_count">Столько времени проведено в приложении:</string>
 
+    <!-- Ключи для SharedPreferences -->
     <string name="user_name_key">user_name_key</string>
     <string name="launch_count_key">launch_count_key</string>
     <string name="time_count_key">time_count_key</string>
