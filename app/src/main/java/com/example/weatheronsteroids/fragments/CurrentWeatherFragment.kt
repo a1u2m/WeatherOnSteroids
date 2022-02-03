@@ -116,8 +116,6 @@ class CurrentWeatherFragment : Fragment() {
             .subscribe(object : DisposableSubscriber<Response>() {
 
                 override fun onNext(t: Response?) {
-                    Log.d(TAG, "onNext")
-
                     description.text =
                         "${description.text} ${t?.weather?.get(0)?.description?.capitalize()}"
                     temp.text = "${temp.text} ${t?.main?.temp}°C"
@@ -133,9 +131,6 @@ class CurrentWeatherFragment : Fragment() {
                         .load(pictureLink)
                         .error(R.drawable.ic_weather_placeholder)
                         .into(icon)
-
-                    loading.visibility = View.GONE
-                    progressBar.visibility = View.GONE
                 }
 
                 override fun onError(t: Throwable?) {
@@ -149,7 +144,8 @@ class CurrentWeatherFragment : Fragment() {
                 }
 
                 override fun onComplete() {
-                    Log.d(TAG, "onComplete")
+                    loading.visibility = View.GONE
+                    progressBar.visibility = View.GONE
                 }
             })
     }

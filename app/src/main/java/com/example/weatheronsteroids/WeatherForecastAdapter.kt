@@ -9,9 +9,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.model.Response
 import com.squareup.picasso.Picasso
-import kotlin.coroutines.coroutineContext
 
-class ForecastAdapter(private val context: Context, private val list: List<Response>) : RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
+class WeatherForecastAdapter(private val context: Context, private val list: List<Response>) : RecyclerView.Adapter<WeatherForecastAdapter.ViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
 

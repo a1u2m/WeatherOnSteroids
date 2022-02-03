@@ -1,6 +1,5 @@
 package com.example.weatheronsteroids
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,16 +7,8 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.weatheronsteroids.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Observer
-import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.observers.DisposableObserver
-import io.reactivex.rxjava3.schedulers.Schedulers
-import io.reactivex.rxjava3.subscribers.DisposableSubscriber
-import org.reactivestreams.Subscriber
-import org.reactivestreams.Subscription
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
@@ -100,9 +91,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        R.id.weather_map -> {
-            if (fragment !is WeatherMapFragment) {
-                fragment = WeatherMapFragment()
+        R.id.air_pollution_forecast -> {
+            if (fragment !is AirPollutionForecastFragment) {
+                fragment = AirPollutionForecastFragment()
                 showFragment(fragment, R.id.fragment_container)
                 true
             } else {

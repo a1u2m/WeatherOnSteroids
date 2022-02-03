@@ -15,11 +15,18 @@ interface OpenWeatherMapApi {
     ): Flowable<Response>
 
     @GET("/data/2.5/forecast?")
-    fun getForecast(
+    fun getWeatherForecast(
         @Query("id") key: String,
         @Query("appid") appid: String,
         @Query("lang") lang: String,
         @Query("units") units: String
     ): Flowable<Forecast>
+
+    @GET("/data/2.5/air_pollution?")
+    fun getCurrentAirPollution(
+        @Query("lat") lat: String,
+        @Query("lon") lon: String,
+        @Query("appid") appid: String
+    ): Flowable<CurrentAirPollution>
 
 }

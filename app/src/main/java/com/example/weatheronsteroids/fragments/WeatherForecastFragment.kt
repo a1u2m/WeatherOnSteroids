@@ -10,7 +10,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatheronsteroids.ForecastAdapter
+import com.example.weatheronsteroids.WeatherForecastAdapter
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.Forecast
 import com.example.weatheronsteroids.model.OpenWeatherMapApi
@@ -59,7 +59,7 @@ class WeatherForecastFragment : Fragment() {
 
         initViews()
 
-        val responseFlowable: Flowable<Forecast> = api.getForecast(ID, API_KEY, LANG, UNITS)
+        val responseFlowable: Flowable<Forecast> = api.getWeatherForecast(ID, API_KEY, LANG, UNITS)
         setupFlowable(responseFlowable)
     }
 
@@ -90,7 +90,7 @@ class WeatherForecastFragment : Fragment() {
 
                 override fun onComplete() {
                     Log.d(TAG, "onComplete")
-                    val adapter = ForecastAdapter(requireActivity().applicationContext, responseList)
+                    val adapter = WeatherForecastAdapter(requireActivity().applicationContext, responseList)
                     recycler.adapter = adapter
 
                     loading.visibility = View.GONE

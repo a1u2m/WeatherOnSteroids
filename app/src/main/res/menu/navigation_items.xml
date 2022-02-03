@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item android:id="@+id/current_weather"
-    android:title="Сейчас"
+    android:title="@string/weather_now"
     android:icon="@drawable/ic_weather_now"/>
 
     <item android:id="@+id/five_days_forecast"
-        android:title="5 дней"
+        android:title="@string/five_days_weather_forecast"
         android:icon="@drawable/ic_five_days_forecast"/>
 
-    <item android:id="@+id/weather_map"
-        android:title="Карта"
-        android:icon="@drawable/ic_weather_map"/>
-
     <item android:id="@+id/air_pollution"
-        android:title="Воздух"
+        android:title="@string/air_pollution"
         android:icon="@drawable/ic_air_pollution"/>
 
+    <item android:id="@+id/air_pollution_forecast"
+        android:title="@string/air_pollution_forecast"
+        android:icon="@drawable/ic_air_pollution_forecast"/>
+
     <item android:id="@+id/settings"
-        android:title="Настройки"
+        android:title="@string/settings"
         android:icon="@drawable/ic_settings"/>
 </menu>

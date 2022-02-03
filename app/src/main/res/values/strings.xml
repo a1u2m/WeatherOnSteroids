@@ -36,5 +36,23 @@
     <string name="launch_count_key">launch_count_key</string>
     <string name="time_count_key">time_count_key</string>
 
+    <!-- Подписи нижнего меню -->
+    <string name="weather_now">Сейчас</string>
+    <string name="five_days_weather_forecast">5 дней</string>
+    <string name="air_pollution">Воздух</string>
+    <string name="air_pollution_forecast">Прогноз</string>
+    <string name="settings">Настройки</string>
+
+    <!-- Данные по загрязнению воздуха -->
+    <string name="air_rate">Общий рейтинг загрязнения воздуха:</string>
+    <string name="co_rate">Концентрация CO (угарный газ):</string>
+    <string name="no_rate">Концентрация NO (монооксид азота):</string>
+    <string name="no2_rate">Концентрация NO₂ (диоксид азота):</string>
+    <string name="o3_rate">Концентрация O₃ (озон):</string>
+    <string name="so2_rate">Концентрация SO₂ (диоксид серы):</string>
+    <string name="pm25_rate">Концентрация PM₂.₅ (мелкие примеси):</string>
+    <string name="pm10_rate">Концентрация PM₁₀ (крупные примеси):</string>
+    <string name="nh3_rate">Концентрация NH₃ (аммиак):</string>
+
 
 </resources>
