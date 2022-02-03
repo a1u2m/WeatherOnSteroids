@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.model.Response
 import com.squareup.picasso.Picasso
 
-class WeatherForecastAdapter(private val context: Context, private val list: List<Response>) : RecyclerView.Adapter<WeatherForecastAdapter.ViewHolder>() {
+class WeatherForecastAdapter(private val context: Context, private val list: List<Response>) :
+    RecyclerView.Adapter<WeatherForecastAdapter.ViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = inflater.inflate(R.layout.recycler_forecast_item, parent, false)
+        val view = inflater.inflate(R.layout.recycler_weather_forecast_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -25,13 +26,21 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
         val pictureLink =
             "https://openweathermap.org/img/wn/${responseList.weather[0].icon}@2x.png"
 
-        holder.timeAndDate.text = "${context.resources.getString(R.string.time_and_date)} ${transformDateToRussian(responseList)}"
-        holder.description.text = "${context.resources.getString(R.string.description)} ${responseList.weather[0].description.capitalize()}"
-        holder.temp.text = "${context.resources.getString(R.string.temp)} ${responseList.main.temp}°C"
-        holder.feelsLike.text = "${context.resources.getString(R.string.feels_like)} ${responseList.main.feelsLike}°C"
-        holder.pressure.text = "${context.resources.getString(R.string.pressure)} ${responseList.main.pressure} мм рт. ст."
-        holder.humidity.text = "${context.resources.getString(R.string.humidity)} ${responseList.main.humidity}%"
-        holder.speed.text = "${context.resources.getString(R.string.speed)} ${responseList.wind.speed} м/с"
+        holder.timeAndDate.text = "${context.resources.getString(R.string.time_and_date)} ${
+            transformDateToRussian(responseList)
+        }"
+        holder.description.text =
+            "${context.resources.getString(R.string.description)} ${responseList.weather[0].description.capitalize()}"
+        holder.temp.text =
+            "${context.resources.getString(R.string.temp)} ${responseList.main.temp}°C"
+        holder.feelsLike.text =
+            "${context.resources.getString(R.string.feels_like)} ${responseList.main.feelsLike}°C"
+        holder.pressure.text =
+            "${context.resources.getString(R.string.pressure)} ${responseList.main.pressure} мм рт. ст."
+        holder.humidity.text =
+            "${context.resources.getString(R.string.humidity)} ${responseList.main.humidity}%"
+        holder.speed.text =
+            "${context.resources.getString(R.string.speed)} ${responseList.wind.speed} м/с"
 
         Picasso.get()
             .load(pictureLink)
@@ -60,15 +69,16 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
         return sb
     }
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
-        var icon: AppCompatImageView = itemView.findViewById(R.id.icon_forecast)
-        var timeAndDate: AppCompatTextView = itemView.findViewById(R.id.time_and_date_forecast)
-        var description: AppCompatTextView = itemView.findViewById(R.id.description_forecast)
-        var temp: AppCompatTextView = itemView.findViewById(R.id.temp_forecast)
-        var feelsLike: AppCompatTextView = itemView.findViewById(R.id.feels_like_forecast)
-        var pressure: AppCompatTextView = itemView.findViewById(R.id.pressure_forecast)
-        var humidity: AppCompatTextView = itemView.findViewById(R.id.humidity_forecast)
-        var speed: AppCompatTextView = itemView.findViewById(R.id.speed_forecast)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var icon: AppCompatImageView = itemView.findViewById(R.id.weather_icon_forecast)
+        var timeAndDate: AppCompatTextView =
+            itemView.findViewById(R.id.weather_time_and_date_forecast)
+        var description: AppCompatTextView =
+            itemView.findViewById(R.id.weather_description_forecast)
+        var temp: AppCompatTextView = itemView.findViewById(R.id.weather_temp_forecast)
+        var feelsLike: AppCompatTextView = itemView.findViewById(R.id.weather_feels_like_forecast)
+        var pressure: AppCompatTextView = itemView.findViewById(R.id.weather_pressure_forecast)
+        var humidity: AppCompatTextView = itemView.findViewById(R.id.weather_humidity_forecast)
+        var speed: AppCompatTextView = itemView.findViewById(R.id.weather_speed_forecast)
     }
 }

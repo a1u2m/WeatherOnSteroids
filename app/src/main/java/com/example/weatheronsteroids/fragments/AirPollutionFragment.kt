@@ -12,8 +12,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.CurrentAirPollution
 import com.example.weatheronsteroids.model.OpenWeatherMapApi
-import com.example.weatheronsteroids.model.Response
-import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -67,17 +65,17 @@ class AirPollutionFragment : Fragment() {
     }
 
     private fun initViews() {
-        airRate = requireActivity().findViewById(R.id.current_air_rate)
-        co = requireActivity().findViewById(R.id.current_co)
-        no = requireActivity().findViewById(R.id.current_no)
-        no2 = requireActivity().findViewById(R.id.current_no2)
-        o3 = requireActivity().findViewById(R.id.current_o3)
-        so2 = requireActivity().findViewById(R.id.current_so2)
-        pm25 = requireActivity().findViewById(R.id.current_pm2_5)
-        pm10 = requireActivity().findViewById(R.id.current_pm10)
-        nh3 = requireActivity().findViewById(R.id.current_nh3)
-        progressBar = requireActivity().findViewById(R.id.progress_bar_air_pollution)
-        loading = requireActivity().findViewById(R.id.loading_air_pollution)
+        airRate = requireActivity().findViewById(R.id.air_pollution_current_air_rate)
+        co = requireActivity().findViewById(R.id.air_pollution_current_co)
+        no = requireActivity().findViewById(R.id.air_pollution_current_no)
+        no2 = requireActivity().findViewById(R.id.air_pollution_current_no2)
+        o3 = requireActivity().findViewById(R.id.air_pollution_current_o3)
+        so2 = requireActivity().findViewById(R.id.air_pollution_current_so2)
+        pm25 = requireActivity().findViewById(R.id.air_pollution_current_pm2_5)
+        pm10 = requireActivity().findViewById(R.id.air_pollution_current_pm10)
+        nh3 = requireActivity().findViewById(R.id.air_pollution_current_nh3)
+        progressBar = requireActivity().findViewById(R.id.current_progress_bar_air_pollution)
+        loading = requireActivity().findViewById(R.id.current_loading_air_pollution)
     }
 
     private fun setupFlowable(flowable: Flowable<CurrentAirPollution>) {

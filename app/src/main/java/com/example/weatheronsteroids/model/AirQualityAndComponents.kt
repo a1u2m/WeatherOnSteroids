@@ -13,4 +13,8 @@ class AirQualityAndComponents {
     @Expose
     lateinit var airPollutionComponents: AirPollutionComponents
 
+    @SerializedName("dt")
+    @Expose
+    lateinit var dt: String
+
 }

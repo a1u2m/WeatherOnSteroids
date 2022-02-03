@@ -70,11 +70,7 @@ class WeatherForecastFragment : Fragment() {
             .subscribe(object : DisposableSubscriber<Forecast>() {
 
                 override fun onNext(t: Forecast?) {
-                    Log.d(TAG, "onNext forecast")
-                    Log.d(TAG, "forecast ${t?.response?.get(0)?.dt_txt}")
-
                     t?.let { forecastList.add(it) }
-
                     responseList = forecastList[0].response
                 }
 
@@ -89,7 +85,6 @@ class WeatherForecastFragment : Fragment() {
                 }
 
                 override fun onComplete() {
-                    Log.d(TAG, "onComplete")
                     val adapter = WeatherForecastAdapter(requireActivity().applicationContext, responseList)
                     recycler.adapter = adapter
 
@@ -100,8 +95,8 @@ class WeatherForecastFragment : Fragment() {
     }
 
     private fun initViews() {
-        recycler = requireActivity().findViewById(R.id.recycler_forecast)
-        loading = requireActivity().findViewById(R.id.loading_forecast)
-        progressBar = requireActivity().findViewById(R.id.progress_bar_forecast)
+        recycler = requireActivity().findViewById(R.id.recycler_weather_forecast)
+        loading = requireActivity().findViewById(R.id.loading_weather_forecast)
+        progressBar = requireActivity().findViewById(R.id.progress_bar_weather_forecast)
     }
 }

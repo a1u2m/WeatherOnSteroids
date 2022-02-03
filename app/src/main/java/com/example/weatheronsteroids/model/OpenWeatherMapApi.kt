@@ -29,4 +29,11 @@ interface OpenWeatherMapApi {
         @Query("appid") appid: String
     ): Flowable<CurrentAirPollution>
 
+    @GET("/data/2.5/air_pollution/forecast?")
+    fun getCurrentAirPollutionForecast(
+        @Query("lat") lat: String,
+        @Query("lon") lon: String,
+        @Query("appid") appid: String
+    ): Flowable<CurrentAirPollution>
+
 }
