@@ -60,7 +60,7 @@ class AirPollutionForecastAdapter(
     }
 
     private fun epochToDate(string: String): String {
-        val sdf = SimpleDateFormat("dd-MM-yyyy HH:MM:SS")
+        val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
         val netDate = Date(string.toLong() * 1000)
         return sdf.format(netDate)
     }
