@@ -1,17 +1,13 @@
-package com.example.weatheronsteroids
+package com.example.weatheronsteroids.ui.airpollutionforecast
 
 import android.content.Context
-import android.icu.lang.UCharacter.GraphemeClusterBreak.L
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.AirQualityAndComponents
-import com.example.weatheronsteroids.model.CurrentAirPollution
-import com.example.weatheronsteroids.model.Response
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,12 +21,12 @@ class AirPollutionForecastAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AirPollutionForecastAdapter.ViewHolder {
+    ): ViewHolder {
         val view = inflater.inflate(R.layout.recycler_air_forecast_item, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AirPollutionForecastAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val responseList = list[position]
 
         holder.timeAndDate.text =

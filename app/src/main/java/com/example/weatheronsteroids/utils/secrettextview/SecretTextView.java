@@ -1,4 +1,4 @@
-package com.example.weatheronsteroids.secrettextview;
+package com.example.weatheronsteroids.utils.secrettextview;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

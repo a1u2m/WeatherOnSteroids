@@ -62,11 +62,8 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.34'
 
     //moxy
-    kapt 'com.arello-mobile:moxy-compiler:1.5.5'
-    implementation 'com.arello-mobile:moxy:1.5.5'
-    implementation 'com.arello-mobile:moxy-android:1.5.5'
     implementation 'com.arello-mobile:moxy-app-compat:1.5.5'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    kapt 'com.arello-mobile:moxy-compiler:1.5.5'
 
     //cicerone
     implementation("com.github.terrakok:cicerone:7.1")

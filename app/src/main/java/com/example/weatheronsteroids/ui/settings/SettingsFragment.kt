@@ -1,4 +1,4 @@
-package com.example.weatheronsteroids.fragments
+package com.example.weatheronsteroids.ui.settings
 
 import android.content.Context
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.secrettextview.SecretTextView
+import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.google.android.material.textfield.TextInputEditText
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable

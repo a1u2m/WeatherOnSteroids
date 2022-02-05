@@ -1,4 +1,4 @@
-package com.example.weatheronsteroids.fragments
+package com.example.weatheronsteroids.ui.airpollution
 
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.CurrentAirPollution
-import com.example.weatheronsteroids.model.OpenWeatherMapApi
+import com.example.weatheronsteroids.network.OpenWeatherMapApi
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_light"
-    tools:context=".fragments.AirPollutionForecastFragment">
+    tools:context=".ui.airpollutionforecast.AirPollutionForecastFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_air_pollution_forecast"

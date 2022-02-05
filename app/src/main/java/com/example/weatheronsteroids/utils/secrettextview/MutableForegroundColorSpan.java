@@ -1,4 +1,4 @@
-package com.example.weatheronsteroids.secrettextview;
+package com.example.weatheronsteroids.utils.secrettextview;
 
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;

@@ -1,4 +1,4 @@
-package com.example.weatheronsteroids
+package com.example.weatheronsteroids.ui.weatherforecast
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.Response
 import com.squareup.picasso.Picasso
 

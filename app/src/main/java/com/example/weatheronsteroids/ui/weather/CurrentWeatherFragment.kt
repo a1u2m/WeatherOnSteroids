@@ -1,4 +1,4 @@
-package com.example.weatheronsteroids.fragments
+package com.example.weatheronsteroids.ui.weather
 
 import android.content.Context
 import android.os.Bundle
@@ -11,11 +11,11 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import com.example.weatheronsteroids.MainActivity
+import com.example.weatheronsteroids.ui.main.MainActivity
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.model.OpenWeatherMapApi
+import com.example.weatheronsteroids.network.OpenWeatherMapApi
 import com.example.weatheronsteroids.model.Response
-import com.example.weatheronsteroids.secrettextview.SecretTextView
+import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable

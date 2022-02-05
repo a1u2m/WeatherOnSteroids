@@ -1,4 +1,4 @@
-package com.example.weatheronsteroids.fragments
+package com.example.weatheronsteroids.ui.weatherforecast
 
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +10,9 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatheronsteroids.WeatherForecastAdapter
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.Forecast
-import com.example.weatheronsteroids.model.OpenWeatherMapApi
+import com.example.weatheronsteroids.network.OpenWeatherMapApi
 import com.example.weatheronsteroids.model.Response
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable

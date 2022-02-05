@@ -1,5 +1,8 @@
-package com.example.weatheronsteroids.model
+package com.example.weatheronsteroids.network
 
+import com.example.weatheronsteroids.model.CurrentAirPollution
+import com.example.weatheronsteroids.model.Forecast
+import com.example.weatheronsteroids.model.Response
 import io.reactivex.rxjava3.core.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Query

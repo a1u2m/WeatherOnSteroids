@@ -1,11 +1,16 @@
-package com.example.weatheronsteroids
+package com.example.weatheronsteroids.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import com.example.weatheronsteroids.fragments.*
+import com.example.weatheronsteroids.R
+import com.example.weatheronsteroids.ui.airpollution.AirPollutionFragment
+import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastFragment
+import com.example.weatheronsteroids.ui.settings.SettingsFragment
+import com.example.weatheronsteroids.ui.weather.CurrentWeatherFragment
+import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observers.DisposableObserver
