@@ -47,14 +47,6 @@ class CurrentWeatherFragment : Fragment() {
     lateinit var progressBar: ProgressBar
     lateinit var greetings: SecretTextView
 
-    private val retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-        .baseUrl("https://api.openweathermap.org")
-        .build()
-
-    private val api = retrofit.create(OpenWeatherMapApi::class.java)
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,7 +60,7 @@ class CurrentWeatherFragment : Fragment() {
         initViews()
 
         if ((activity as MainActivity).isCanGreet) {
-            val spName = getUserName()
+            val spName = (activity as MainActivity).sp.getUserName()
             Log.d(TAG, "$spName")
             greetings.text = "${getGreeting()} ${if (spName != "user_name_key") spName else resources.getString(R.string.user)}"
             greetings.show()
@@ -76,15 +68,11 @@ class CurrentWeatherFragment : Fragment() {
             (activity as MainActivity).isCanGreet = false
         }
 
-        val responseFlowable: Flowable<Response> = api.getCurrentWeather(ID, API_KEY, LANG, UNITS)
+        val responseFlowable: Flowable<Response> = (activity as MainActivity).retrofitHelper.getApi().getCurrentWeather(ID, API_KEY, LANG, UNITS)
         setupFlowable(responseFlowable)
     }
 
-    private fun getUserName(): String? {
-        val sp = activity?.getPreferences(Context.MODE_PRIVATE)
-        val name = resources.getString(R.string.user_name_key)
-        return sp?.getString(getString(R.string.user_name_key), name)
-    }
+
 
     private fun hideGreetings() {
         Flowable

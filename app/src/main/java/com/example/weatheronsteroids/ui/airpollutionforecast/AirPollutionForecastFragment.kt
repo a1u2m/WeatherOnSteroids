@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.*
 import com.example.weatheronsteroids.network.OpenWeatherMapApi
+import com.example.weatheronsteroids.ui.main.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -36,14 +37,6 @@ class AirPollutionForecastFragment : Fragment() {
     private val forecastList = mutableListOf<CurrentAirPollution>()
     private var responseList = listOf<AirQualityAndComponents>()
 
-    private val retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-        .baseUrl("https://api.openweathermap.org")
-        .build()
-
-    private val api = retrofit.create(OpenWeatherMapApi::class.java)
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,7 +49,7 @@ class AirPollutionForecastFragment : Fragment() {
 
         initViews()
 
-        val forecastAirPollutionFlowable: Flowable<CurrentAirPollution> = api.getCurrentAirPollutionForecast(LAT, LON, API_KEY)
+        val forecastAirPollutionFlowable: Flowable<CurrentAirPollution> = (activity as MainActivity).retrofitHelper.getApi().getCurrentAirPollutionForecast(LAT, LON, API_KEY)
         setupFlowable(forecastAirPollutionFlowable)
     }
 

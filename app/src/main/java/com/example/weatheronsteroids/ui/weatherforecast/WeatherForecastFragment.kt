@@ -14,6 +14,7 @@ import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.Forecast
 import com.example.weatheronsteroids.network.OpenWeatherMapApi
 import com.example.weatheronsteroids.model.Response
+import com.example.weatheronsteroids.ui.main.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -38,14 +39,6 @@ class WeatherForecastFragment : Fragment() {
     private val forecastList = mutableListOf<Forecast>()
     private var responseList = listOf<Response>()
 
-    private val retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-        .baseUrl("https://api.openweathermap.org")
-        .build()
-
-    private val api = retrofit.create(OpenWeatherMapApi::class.java)
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,7 +51,7 @@ class WeatherForecastFragment : Fragment() {
 
         initViews()
 
-        val responseFlowable: Flowable<Forecast> = api.getWeatherForecast(ID, API_KEY, LANG, UNITS)
+        val responseFlowable: Flowable<Forecast> = (activity as MainActivity).retrofitHelper.getApi().getWeatherForecast(ID, API_KEY, LANG, UNITS)
         setupFlowable(responseFlowable)
     }
 

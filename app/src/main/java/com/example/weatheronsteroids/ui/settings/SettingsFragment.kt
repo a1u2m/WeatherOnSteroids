@@ -72,7 +72,7 @@ class SettingsFragment : Fragment() {
         inputName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val name = inputName.text.toString()
-                (activity as MainActivity).sp.getName(name)
+                (activity as MainActivity).sp.setName(name)
             }
             return@setOnEditorActionListener false
         }

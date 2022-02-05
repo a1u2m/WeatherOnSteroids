@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
+import com.example.weatheronsteroids.network.RetrofitHelper
 import com.example.weatheronsteroids.ui.airpollution.AirPollutionFragment
 import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastFragment
 import com.example.weatheronsteroids.ui.settings.SettingsFragment
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var fragment = Fragment()
     private lateinit var bottomPanel: BottomNavigationView
     lateinit var sp: SharedPreferencesHelper
+    lateinit var retrofitHelper: RetrofitHelper
 
     var isCanGreet = true
     var timeCount = 0
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         showFragment(fragment, R.id.fragment_container)
         bottomPanel.setOnItemSelectedListener { menu -> setupBottomNavigationMenu(menu) }
         sp = SharedPreferencesHelper(this)
+        retrofitHelper = RetrofitHelper()
     }
 
     private fun setupBottomNavigationMenu(menu: MenuItem) = when (menu.itemId) {
