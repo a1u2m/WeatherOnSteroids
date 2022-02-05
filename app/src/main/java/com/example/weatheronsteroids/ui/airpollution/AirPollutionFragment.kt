@@ -54,7 +54,7 @@ class AirPollutionFragment : Fragment() {
 
         initViews()
 
-        val currentAirPollutionFlowable: Flowable<CurrentAirPollution> = (activity as MainActivity).retrofitHelper.getApi().getCurrentAirPollution(LAT, LON, API_KEY)
+        val currentAirPollutionFlowable: Flowable<CurrentAirPollution> = (activity as MainActivity).mainPresenter.retrofitHelper.getApi().getCurrentAirPollution(LAT, LON, API_KEY)
         setupFlowable(currentAirPollutionFlowable)
     }
 

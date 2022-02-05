@@ -72,23 +72,25 @@ class SettingsFragment : Fragment() {
         inputName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val name = inputName.text.toString()
-                (activity as MainActivity).sp.setName(name)
+                (activity as MainActivity).mainPresenter.sharedPreferencesHelper.setName(name)
             }
             return@setOnEditorActionListener false
         }
 
         becomeIncognito = requireActivity().findViewById(R.id.become_incognito)
         becomeIncognito.setOnClickListener {
-            (activity as MainActivity).sp.clearName()
+            (activity as MainActivity).mainPresenter.sharedPreferencesHelper.clearName()
             incognitoCongrats.show()
             hideGreetings()
         }
 
         launchCount = requireActivity().findViewById(R.id.launch_count)
-        launchCount.text = "${resources.getString(R.string.app_launch_count)} ${(activity as MainActivity).sp.getLaunch()}"
+        launchCount.text =
+            "${resources.getString(R.string.app_launch_count)} ${(activity as MainActivity).mainPresenter.sharedPreferencesHelper.getLaunch()}"
 
         timeCount = requireActivity().findViewById(R.id.time_count)
-        timeCount.text = "${resources.getString(R.string.app_time_count)} ${humanTime((activity as MainActivity).sp.getTime())}"
+        timeCount.text =
+            "${resources.getString(R.string.app_time_count)} ${humanTime((activity as MainActivity).mainPresenter.sharedPreferencesHelper.getTime())}"
     }
 
     private fun hideGreetings() {

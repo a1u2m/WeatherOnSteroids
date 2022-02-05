@@ -1,61 +1,56 @@
 package com.example.weatheronsteroids.data
 
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
-import androidx.appcompat.app.AppCompatActivity
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.ui.main.MainActivity
+import javax.inject.Inject
 
-class SharedPreferencesHelper(private val activity: AppCompatActivity) {
+class SharedPreferencesHelper @Inject constructor(private val context: Context) {
 
-    private val sharedPreferences = activity.getPreferences(MODE_PRIVATE)
+    private val sharedPreferences =
+        context.getSharedPreferences("SharedPreferencesHelper", MODE_PRIVATE)
 
-    fun countTime() {
-        var tempTimeCount = sharedPreferences.getInt(activity.getString(R.string.time_count_key), 0)
-        tempTimeCount += (activity as MainActivity).timeCount
-        putTime(tempTimeCount)
-        activity.timeCountDisposable.dispose()
-    }
 
-    private fun putTime(tempTimeCount: Int) {
+    fun putTime(tempTimeCount: Int) {
         with(sharedPreferences.edit()) {
-            this?.putInt(activity.getString(R.string.time_count_key), tempTimeCount)
+            this?.putInt(context.getString(R.string.time_count_key), tempTimeCount)
             this?.apply()
         }
     }
 
     fun getTime(): Int {
-        return sharedPreferences.getInt(activity.getString(R.string.time_count_key), 0)
+        return sharedPreferences.getInt(context.getString(R.string.time_count_key), 0)
     }
 
     fun putLaunch() {
         var tempLaunchCount =
-            sharedPreferences.getInt(activity.getString(R.string.launch_count_key), 0)
+            sharedPreferences.getInt(context.getString(R.string.launch_count_key), 0)
         tempLaunchCount++
         with(sharedPreferences.edit()) {
-            this?.putInt(activity.getString(R.string.launch_count_key), tempLaunchCount)
+            this?.putInt(context.getString(R.string.launch_count_key), tempLaunchCount)
             this?.apply()
         }
     }
 
     fun getLaunch(): Int {
-        return sharedPreferences.getInt(activity.getString(R.string.launch_count_key), 0)
+        return sharedPreferences.getInt(context.getString(R.string.launch_count_key), 0)
     }
 
     fun setName(name: String) {
         with(sharedPreferences.edit()) {
-            this?.putString(activity.getString(R.string.user_name_key), name)
+            this?.putString(context.getString(R.string.user_name_key), name)
             this?.apply()
         }
     }
 
     fun getUserName(): String? {
-        val name = activity.resources.getString(R.string.user_name_key)
-        return sharedPreferences.getString(activity.getString(R.string.user_name_key), name)
+        val name = context.resources.getString(R.string.user_name_key)
+        return sharedPreferences.getString(context.getString(R.string.user_name_key), name)
     }
 
     fun clearName() {
         with(sharedPreferences.edit()) {
-            this?.remove(activity.getString(R.string.user_name_key))
+            this?.remove(context.getString(R.string.user_name_key))
             this?.apply()
         }
     }

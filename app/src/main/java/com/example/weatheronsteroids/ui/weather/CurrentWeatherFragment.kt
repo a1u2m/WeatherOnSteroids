@@ -60,18 +60,21 @@ class CurrentWeatherFragment : Fragment() {
         initViews()
 
         if ((activity as MainActivity).isCanGreet) {
-            val spName = (activity as MainActivity).sp.getUserName()
+            val spName =
+                (activity as MainActivity).mainPresenter.sharedPreferencesHelper.getUserName()
             Log.d(TAG, "$spName")
-            greetings.text = "${getGreeting()} ${if (spName != "user_name_key") spName else resources.getString(R.string.user)}"
+            greetings.text =
+                "${getGreeting()} ${if (spName != "user_name_key") spName else resources.getString(R.string.user)}"
             greetings.show()
             hideGreetings()
             (activity as MainActivity).isCanGreet = false
         }
 
-        val responseFlowable: Flowable<Response> = (activity as MainActivity).retrofitHelper.getApi().getCurrentWeather(ID, API_KEY, LANG, UNITS)
+        val responseFlowable: Flowable<Response> =
+            (activity as MainActivity).mainPresenter.retrofitHelper.getApi()
+                .getCurrentWeather(ID, API_KEY, LANG, UNITS)
         setupFlowable(responseFlowable)
     }
-
 
 
     private fun hideGreetings() {
@@ -92,7 +95,7 @@ class CurrentWeatherFragment : Fragment() {
                 }
 
                 override fun onError(t: Throwable?) {
-                        Log.d(TAG, "onError: ${t?.message}")
+                    Log.d(TAG, "onError: ${t?.message}")
                 }
             })
     }

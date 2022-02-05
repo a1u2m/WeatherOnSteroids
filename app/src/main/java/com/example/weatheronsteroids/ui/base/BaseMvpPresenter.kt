@@ -5,11 +5,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 abstract class BaseMvpPresenter<T : BaseMvpView> : MvpPresenter<T>() {
 
-    protected val disposables = CompositeDisposable()
+    private val disposables = CompositeDisposable()
 
     override fun onDestroy() {
         super.onDestroy()
         disposables.clear()
     }
-
 }

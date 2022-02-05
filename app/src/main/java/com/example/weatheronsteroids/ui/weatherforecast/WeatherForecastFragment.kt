@@ -51,7 +51,9 @@ class WeatherForecastFragment : Fragment() {
 
         initViews()
 
-        val responseFlowable: Flowable<Forecast> = (activity as MainActivity).retrofitHelper.getApi().getWeatherForecast(ID, API_KEY, LANG, UNITS)
+        val responseFlowable: Flowable<Forecast> =
+            (activity as MainActivity).mainPresenter.retrofitHelper.getApi()
+                .getWeatherForecast(ID, API_KEY, LANG, UNITS)
         setupFlowable(responseFlowable)
     }
 
@@ -77,7 +79,8 @@ class WeatherForecastFragment : Fragment() {
                 }
 
                 override fun onComplete() {
-                    val adapter = WeatherForecastAdapter(requireActivity().applicationContext, responseList)
+                    val adapter =
+                        WeatherForecastAdapter(requireActivity().applicationContext, responseList)
                     recycler.adapter = adapter
 
                     loading.visibility = View.GONE

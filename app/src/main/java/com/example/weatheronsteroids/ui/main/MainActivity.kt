@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
+import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.network.RetrofitHelper
 import com.example.weatheronsteroids.ui.airpollution.AirPollutionFragment
 import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastFragment
@@ -19,14 +20,13 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import java.util.concurrent.TimeUnit
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
 
     private var fragment = Fragment()
     private lateinit var bottomPanel: BottomNavigationView
-    lateinit var sp: SharedPreferencesHelper
-    lateinit var retrofitHelper: RetrofitHelper
+    lateinit var mainPresenter: MainPresenter
 
     var isCanGreet = true
     var timeCount = 0
@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mainPresenter = (application as App).appComponent.getMainActivityPresenter()
         init()
         countLaunch()
     }
@@ -48,11 +49,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        sp.countTime()
+        countTime()
+    }
+
+    fun countTime() {
+        var tempTimeCount = mainPresenter.sharedPreferencesHelper.getTime()
+        tempTimeCount += timeCount
+        mainPresenter.sharedPreferencesHelper.putTime(tempTimeCount)
+        timeCountDisposable.dispose()
     }
 
     private fun countLaunch() {
-        sp.putLaunch()
+        mainPresenter.sharedPreferencesHelper.putLaunch()
     }
 
     private fun init() {
@@ -60,8 +68,6 @@ class MainActivity : AppCompatActivity() {
         fragment = CurrentWeatherFragment()
         showFragment(fragment, R.id.fragment_container)
         bottomPanel.setOnItemSelectedListener { menu -> setupBottomNavigationMenu(menu) }
-        sp = SharedPreferencesHelper(this)
-        retrofitHelper = RetrofitHelper()
     }
 
     private fun setupBottomNavigationMenu(menu: MenuItem) = when (menu.itemId) {
