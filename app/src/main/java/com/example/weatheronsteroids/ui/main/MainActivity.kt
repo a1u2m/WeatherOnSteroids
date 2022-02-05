@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private var fragment = Fragment()
     private lateinit var bottomPanel: BottomNavigationView
-    private lateinit var sp: SharedPreferencesHelper
+    lateinit var sp: SharedPreferencesHelper
 
     var isCanGreet = true
     var timeCount = 0

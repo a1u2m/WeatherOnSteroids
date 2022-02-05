@@ -1,6 +1,5 @@
 package com.example.weatheronsteroids.ui.settings
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
+import com.example.weatheronsteroids.ui.main.MainActivity
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.google.android.material.textfield.TextInputEditText
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -24,11 +23,11 @@ class SettingsFragment : Fragment() {
 
     private val TAG = "SettingsFragment"
 
-    lateinit var inputName: TextInputEditText
-    lateinit var becomeIncognito: AppCompatButton
-    lateinit var incognitoCongrats: SecretTextView
-    lateinit var launchCount: AppCompatTextView
-    lateinit var timeCount: AppCompatTextView
+    private lateinit var inputName: TextInputEditText
+    private lateinit var becomeIncognito: AppCompatButton
+    private lateinit var incognitoCongrats: SecretTextView
+    private lateinit var launchCount: AppCompatTextView
+    private lateinit var timeCount: AppCompatTextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,17 +39,6 @@ class SettingsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initViews()
-    }
-
-    private fun countLaunch(): Int {
-        val sp = requireActivity().getPreferences(AppCompatActivity.MODE_PRIVATE)
-        return sp.getInt(getString(R.string.launch_count_key), 0)
-    }
-
-    private fun countTime(): String {
-        val sp = requireActivity().getPreferences(AppCompatActivity.MODE_PRIVATE)
-        val time = sp.getInt(getString(R.string.time_count_key), 0)
-        return humanTime(time)
     }
 
     private fun humanTime(time: Int): String {
@@ -84,31 +72,23 @@ class SettingsFragment : Fragment() {
         inputName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val name = inputName.text.toString()
-                val sp = activity?.getPreferences(Context.MODE_PRIVATE)
-                with(sp?.edit()) {
-                    this?.putString(getString(R.string.user_name_key), name)
-                    this?.apply()
-                }
+                (activity as MainActivity).sp.getName(name)
             }
             return@setOnEditorActionListener false
         }
 
         becomeIncognito = requireActivity().findViewById(R.id.become_incognito)
         becomeIncognito.setOnClickListener {
-            val sp = activity?.getPreferences(Context.MODE_PRIVATE)
-            with(sp?.edit()) {
-                this?.remove(getString(R.string.user_name_key))
-                this?.apply()
-            }
+            (activity as MainActivity).sp.clearName()
             incognitoCongrats.show()
             hideGreetings()
         }
 
         launchCount = requireActivity().findViewById(R.id.launch_count)
-        launchCount.text = "${resources.getString(R.string.app_launch_count)} ${countLaunch()}"
+        launchCount.text = "${resources.getString(R.string.app_launch_count)} ${(activity as MainActivity).sp.getLaunch()}"
 
         timeCount = requireActivity().findViewById(R.id.time_count)
-        timeCount.text = "${resources.getString(R.string.app_time_count)} ${countTime()}"
+        timeCount.text = "${resources.getString(R.string.app_time_count)} ${humanTime((activity as MainActivity).sp.getTime())}"
     }
 
     private fun hideGreetings() {
@@ -131,6 +111,8 @@ class SettingsFragment : Fragment() {
                 override fun onError(t: Throwable?) {
                     if (t != null) {
                         Log.d(TAG, "onError: ${t.message}")
+                    } else {
+                        Log.d(TAG, "onError: t == null")
                     }
                 }
             })

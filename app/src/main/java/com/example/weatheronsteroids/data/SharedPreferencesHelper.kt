@@ -31,4 +31,26 @@ class SharedPreferencesHelper(private val activity: AppCompatActivity) {
         putTime(tempTimeCount)
         activity.timeCountDisposable.dispose()
     }
+
+    fun getName(name: String) {
+        with(sharedPreferences.edit()) {
+            this?.putString(activity.getString(R.string.user_name_key), name)
+            this?.apply()
+        }
+    }
+
+    fun clearName() {
+        with(sharedPreferences.edit()) {
+            this?.remove(activity.getString(R.string.user_name_key))
+            this?.apply()
+        }
+    }
+
+    fun getLaunch(): Int {
+        return sharedPreferences.getInt(activity.getString(R.string.launch_count_key), 0)
+    }
+
+    fun getTime(): Int {
+        return sharedPreferences.getInt(activity.getString(R.string.time_count_key), 0)
+    }
 }
