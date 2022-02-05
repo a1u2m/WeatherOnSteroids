@@ -1,11 +1,13 @@
 package com.example.weatheronsteroids.ui.main
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.weatheronsteroids.R
+import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.ui.airpollution.AirPollutionFragment
 import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastFragment
 import com.example.weatheronsteroids.ui.settings.SettingsFragment
@@ -22,17 +24,18 @@ class MainActivity : AppCompatActivity() {
 
     private var fragment = Fragment()
     private lateinit var bottomPanel: BottomNavigationView
+    private lateinit var sp: SharedPreferencesHelper
 
     var isCanGreet = true
     var timeCount = 0
 
     private val timeCountObservable = Observable.interval(1, TimeUnit.SECONDS)
-    private lateinit var timeCountDisposable: DisposableObserver<Long>
+    lateinit var timeCountDisposable: DisposableObserver<Long>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initViews()
+        init()
         countLaunch()
     }
 
@@ -43,36 +46,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-
-        val sp = getPreferences(MODE_PRIVATE)
-        var tempTimeCount = sp.getInt(getString(R.string.time_count_key), 0)
-        tempTimeCount += timeCount
-        with(sp?.edit()) {
-            this?.putInt(getString(R.string.time_count_key), tempTimeCount)
-            this?.apply()
-        }
-        timeCountDisposable.dispose()
-
-        Log.d(TAG, "timeCount onPause")
+        sp.countTime()
     }
 
     private fun countLaunch() {
-        val sp = getPreferences(MODE_PRIVATE)
-        var tempLaunchCount = sp.getInt(getString(R.string.launch_count_key), 0)
-        tempLaunchCount++
-        with(sp?.edit()) {
-            this?.putInt(getString(R.string.launch_count_key), tempLaunchCount)
-            this?.apply()
-        }
+        sp.putLaunch()
     }
 
-    private fun initViews() {
+    private fun init() {
         bottomPanel = findViewById(R.id.bottom_panel)
-
         fragment = CurrentWeatherFragment()
         showFragment(fragment, R.id.fragment_container)
-
         bottomPanel.setOnItemSelectedListener { menu -> setupBottomNavigationMenu(menu) }
+        sp = SharedPreferencesHelper(this)
     }
 
     private fun setupBottomNavigationMenu(menu: MenuItem) = when (menu.itemId) {
@@ -133,14 +119,12 @@ class MainActivity : AppCompatActivity() {
         val frame = supportFragmentManager.beginTransaction()
         frame.replace(id, fragment)
         frame.commit()
-        Log.d(TAG, "showfragment $fragment")
     }
 
     private fun createNewDisposableAndSubscribe() {
         timeCountDisposable = object : DisposableObserver<Long>() {
 
             override fun onNext(t: Long?) {
-                Log.d(TAG, "timeCount: $t")
                 timeCount++
             }
 
@@ -149,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onComplete() {
-                Log.d(TAG, "timeCount onComplete")
+                //do nothing
             }
         }
         timeCountObservable.subscribe(timeCountDisposable)
