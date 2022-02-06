@@ -1,17 +1,9 @@
 package com.example.weatheronsteroids.ui.main
 
 import android.util.Log
-import android.view.MenuItem
-import androidx.fragment.app.Fragment
-import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.network.RetrofitHelper
-import com.example.weatheronsteroids.ui.airpollution.AirPollutionFragment
-import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastFragment
 import com.example.weatheronsteroids.ui.base.BaseMvpPresenter
-import com.example.weatheronsteroids.ui.settings.SettingsFragment
-import com.example.weatheronsteroids.ui.weather.CurrentWeatherFragment
-import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastFragment
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import java.util.concurrent.TimeUnit
@@ -26,8 +18,6 @@ open class MainPresenter @Inject constructor(
 
     private val timeCountObservable = Observable.interval(1, TimeUnit.SECONDS)
     lateinit var timeCountDisposable: DisposableObserver<Long>
-
-    open var isCanGreet = true
 
     var timeCount = 0
 
@@ -58,5 +48,9 @@ open class MainPresenter @Inject constructor(
 
     fun putLaunch() {
         sharedPreferencesHelper.putLaunch()
+    }
+
+    fun isCanGreetReset() {
+        sharedPreferencesHelper.resetIsCanGreet()
     }
 }

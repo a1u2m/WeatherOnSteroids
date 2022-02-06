@@ -1,7 +1,5 @@
 package com.example.weatheronsteroids.ui.base
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-
 abstract class BaseMvpPresenter<T : BaseMvpView> : MvpPresenter<T> {
 
     var view: T? = null

@@ -12,10 +12,8 @@ class SharedPreferencesHelper @Inject constructor(private val context: Context) 
 
 
     fun putTime(tempTimeCount: Int) {
-        with(sharedPreferences.edit()) {
-            this?.putInt(context.getString(R.string.time_count_key), tempTimeCount)
-            this?.apply()
-        }
+        sharedPreferences.edit().putInt(context.getString(R.string.time_count_key), tempTimeCount)
+            .apply()
     }
 
     fun getTime(): Int {
@@ -26,21 +24,17 @@ class SharedPreferencesHelper @Inject constructor(private val context: Context) 
         var tempLaunchCount =
             sharedPreferences.getInt(context.getString(R.string.launch_count_key), 0)
         tempLaunchCount++
-        with(sharedPreferences.edit()) {
-            this?.putInt(context.getString(R.string.launch_count_key), tempLaunchCount)
-            this?.apply()
-        }
+        sharedPreferences.edit()
+            .putInt(context.getString(R.string.launch_count_key), tempLaunchCount).apply()
     }
+
 
     fun getLaunch(): Int {
         return sharedPreferences.getInt(context.getString(R.string.launch_count_key), 0)
     }
 
     fun setName(name: String) {
-        with(sharedPreferences.edit()) {
-            this?.putString(context.getString(R.string.user_name_key), name)
-            this?.apply()
-        }
+        sharedPreferences.edit().putString(context.getString(R.string.user_name_key), name).apply()
     }
 
     fun getUserName(): String? {
@@ -49,9 +43,19 @@ class SharedPreferencesHelper @Inject constructor(private val context: Context) 
     }
 
     fun clearName() {
-        with(sharedPreferences.edit()) {
-            this?.remove(context.getString(R.string.user_name_key))
-            this?.apply()
-        }
+        sharedPreferences.edit().remove(context.getString(R.string.user_name_key)).apply()
+    }
+
+    fun getIsCanGreet(): Boolean {
+        return sharedPreferences.getBoolean(context.getString(R.string.is_can_greet_key), true)
+    }
+
+    fun putIsCanGreet() {
+        sharedPreferences.edit().putBoolean(context.getString(R.string.is_can_greet_key), false)
+            .apply()
+    }
+
+    fun resetIsCanGreet() {
+        sharedPreferences.edit().remove(context.getString(R.string.is_can_greet_key)).apply()
     }
 }

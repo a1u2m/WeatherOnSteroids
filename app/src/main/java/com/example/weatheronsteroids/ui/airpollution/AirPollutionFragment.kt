@@ -11,18 +11,13 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.CurrentAirPollution
-import com.example.weatheronsteroids.network.OpenWeatherMapApi
-import com.example.weatheronsteroids.network.RetrofitHelper
 import com.example.weatheronsteroids.ui.main.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
-class AirPollutionFragment : Fragment() {
+class AirPollutionFragment : Fragment(), AirPollutionView {
 
     private val TAG = "AirPollutionFragment"
 
@@ -54,7 +49,7 @@ class AirPollutionFragment : Fragment() {
 
         initViews()
 
-        val currentAirPollutionFlowable: Flowable<CurrentAirPollution> = (activity as MainActivity).mainPresenter.retrofitHelper.getApi().getCurrentAirPollution(LAT, LON, API_KEY)
+        val currentAirPollutionFlowable: Flowable<CurrentAirPollution> = (activity as MainActivity).presenter.retrofitHelper.getApi().getCurrentAirPollution(LAT, LON, API_KEY)
         setupFlowable(currentAirPollutionFlowable)
     }
 

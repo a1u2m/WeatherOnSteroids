@@ -35,6 +35,7 @@
     <string name="user_name_key">user_name_key</string>
     <string name="launch_count_key">launch_count_key</string>
     <string name="time_count_key">time_count_key</string>
+    <string name="is_can_greet_key">is_can_greet_key</string>
 
     <!-- Подписи нижнего меню -->
     <string name="weather_now">Сейчас</string>

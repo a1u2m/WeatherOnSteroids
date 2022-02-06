@@ -12,18 +12,14 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.Forecast
-import com.example.weatheronsteroids.network.OpenWeatherMapApi
 import com.example.weatheronsteroids.model.Response
 import com.example.weatheronsteroids.ui.main.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
-class WeatherForecastFragment : Fragment() {
+class WeatherForecastFragment : Fragment(), WeatherForecastView {
 
     private val TAG = "WeatherForecastFragment"
 
@@ -52,7 +48,7 @@ class WeatherForecastFragment : Fragment() {
         initViews()
 
         val responseFlowable: Flowable<Forecast> =
-            (activity as MainActivity).mainPresenter.retrofitHelper.getApi()
+            (activity as MainActivity).presenter.retrofitHelper.getApi()
                 .getWeatherForecast(ID, API_KEY, LANG, UNITS)
         setupFlowable(responseFlowable)
     }

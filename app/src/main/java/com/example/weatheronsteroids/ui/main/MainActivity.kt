@@ -8,7 +8,6 @@ import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.ui.airpollution.AirPollutionFragment
 import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastFragment
-import com.example.weatheronsteroids.ui.base.BaseMvpView
 import com.example.weatheronsteroids.ui.settings.SettingsFragment
 import com.example.weatheronsteroids.ui.weather.CurrentWeatherFragment
 import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastFragment
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
     private val TAG = "MainActivity"
 
-    lateinit var mainPresenter: MainPresenter
+    lateinit var presenter: MainPresenter
 
     var fragment = Fragment()
     private lateinit var bottomPanel: BottomNavigationView
@@ -26,23 +25,23 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainPresenter = (application as App).appComponent.getMainActivityPresenter()
+        presenter = (application as App).appComponent.getMainActivityPresenter()
         init()
         countLaunch()
     }
 
     override fun onResume() {
         super.onResume()
-        mainPresenter.createNewDisposableAndSubscribe()
+        presenter.createNewDisposableAndSubscribe()
     }
 
     override fun onPause() {
         super.onPause()
-        mainPresenter.countTime()
+        presenter.countTime()
     }
 
     override fun countLaunch() {
-        mainPresenter.putLaunch()
+        presenter.putLaunch()
     }
 
     override fun init() {
@@ -50,7 +49,7 @@ class MainActivity : AppCompatActivity(), MainView {
         fragment = CurrentWeatherFragment()
         showFragment(fragment, R.id.fragment_container)
         bottomPanel.setOnItemSelectedListener { menu -> setupBottomNavigationMenu(menu) }
-        mainPresenter.attachView(this)
+        presenter.attachView(this)
     }
 
     private fun setupBottomNavigationMenu(menu: MenuItem) = when (menu.itemId) {
@@ -110,6 +109,11 @@ class MainActivity : AppCompatActivity(), MainView {
         val frame = supportFragmentManager.beginTransaction()
         frame.replace(id, fragment)
         frame.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.isCanGreetReset()
     }
 }
 

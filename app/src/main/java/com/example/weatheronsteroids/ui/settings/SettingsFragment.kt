@@ -19,7 +19,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber
 import java.util.concurrent.TimeUnit
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : Fragment(), SettingsView {
 
     private val TAG = "SettingsFragment"
 
@@ -72,25 +72,25 @@ class SettingsFragment : Fragment() {
         inputName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val name = inputName.text.toString()
-                (activity as MainActivity).mainPresenter.sharedPreferencesHelper.setName(name)
+                (activity as MainActivity).presenter.sharedPreferencesHelper.setName(name)
             }
             return@setOnEditorActionListener false
         }
 
         becomeIncognito = requireActivity().findViewById(R.id.become_incognito)
         becomeIncognito.setOnClickListener {
-            (activity as MainActivity).mainPresenter.sharedPreferencesHelper.clearName()
+            (activity as MainActivity).presenter.sharedPreferencesHelper.clearName()
             incognitoCongrats.show()
             hideGreetings()
         }
 
         launchCount = requireActivity().findViewById(R.id.launch_count)
         launchCount.text =
-            "${resources.getString(R.string.app_launch_count)} ${(activity as MainActivity).mainPresenter.sharedPreferencesHelper.getLaunch()}"
+            "${resources.getString(R.string.app_launch_count)} ${(activity as MainActivity).presenter.sharedPreferencesHelper.getLaunch()}"
 
         timeCount = requireActivity().findViewById(R.id.time_count)
         timeCount.text =
-            "${resources.getString(R.string.app_time_count)} ${humanTime((activity as MainActivity).mainPresenter.sharedPreferencesHelper.getTime())}"
+            "${resources.getString(R.string.app_time_count)} ${humanTime((activity as MainActivity).presenter.sharedPreferencesHelper.getTime())}"
     }
 
     private fun hideGreetings() {
