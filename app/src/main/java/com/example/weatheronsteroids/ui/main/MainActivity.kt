@@ -1,38 +1,27 @@
 package com.example.weatheronsteroids.ui.main
 
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.di.App
-import com.example.weatheronsteroids.network.RetrofitHelper
 import com.example.weatheronsteroids.ui.airpollution.AirPollutionFragment
 import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastFragment
+import com.example.weatheronsteroids.ui.base.BaseMvpView
 import com.example.weatheronsteroids.ui.settings.SettingsFragment
 import com.example.weatheronsteroids.ui.weather.CurrentWeatherFragment
 import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.observers.DisposableObserver
-import java.util.concurrent.TimeUnit
 
-open class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
 
     private val TAG = "MainActivity"
 
-    private var fragment = Fragment()
-    private lateinit var bottomPanel: BottomNavigationView
     lateinit var mainPresenter: MainPresenter
 
-    var isCanGreet = true
-    var timeCount = 0
-
-    private val timeCountObservable = Observable.interval(1, TimeUnit.SECONDS)
-    lateinit var timeCountDisposable: DisposableObserver<Long>
+    var fragment = Fragment()
+    private lateinit var bottomPanel: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,30 +33,24 @@ open class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        createNewDisposableAndSubscribe()
+        mainPresenter.createNewDisposableAndSubscribe()
     }
 
     override fun onPause() {
         super.onPause()
-        countTime()
+        mainPresenter.countTime()
     }
 
-    fun countTime() {
-        var tempTimeCount = mainPresenter.sharedPreferencesHelper.getTime()
-        tempTimeCount += timeCount
-        mainPresenter.sharedPreferencesHelper.putTime(tempTimeCount)
-        timeCountDisposable.dispose()
+    override fun countLaunch() {
+        mainPresenter.putLaunch()
     }
 
-    private fun countLaunch() {
-        mainPresenter.sharedPreferencesHelper.putLaunch()
-    }
-
-    private fun init() {
+    override fun init() {
         bottomPanel = findViewById(R.id.bottom_panel)
         fragment = CurrentWeatherFragment()
         showFragment(fragment, R.id.fragment_container)
         bottomPanel.setOnItemSelectedListener { menu -> setupBottomNavigationMenu(menu) }
+        mainPresenter.attachView(this)
     }
 
     private fun setupBottomNavigationMenu(menu: MenuItem) = when (menu.itemId) {
@@ -123,29 +106,10 @@ open class MainActivity : AppCompatActivity() {
         else -> false
     }
 
-
-    private fun showFragment(fragment: Fragment, id: Int) {
+    override fun showFragment(fragment: Fragment, id: Int) {
         val frame = supportFragmentManager.beginTransaction()
         frame.replace(id, fragment)
         frame.commit()
-    }
-
-    private fun createNewDisposableAndSubscribe() {
-        timeCountDisposable = object : DisposableObserver<Long>() {
-
-            override fun onNext(t: Long?) {
-                timeCount++
-            }
-
-            override fun onError(t: Throwable?) {
-                Log.d(TAG, "timeCount onError: ${t?.message}")
-            }
-
-            override fun onComplete() {
-                //do nothing
-            }
-        }
-        timeCountObservable.subscribe(timeCountDisposable)
     }
 }
 

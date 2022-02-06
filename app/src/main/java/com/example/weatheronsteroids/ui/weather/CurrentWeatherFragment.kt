@@ -1,6 +1,5 @@
 package com.example.weatheronsteroids.ui.weather
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,17 +12,15 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.ui.main.MainActivity
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.network.OpenWeatherMapApi
+import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.Response
+import com.example.weatheronsteroids.ui.main.MainPresenter
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -47,6 +44,8 @@ class CurrentWeatherFragment : Fragment() {
     lateinit var progressBar: ProgressBar
     lateinit var greetings: SecretTextView
 
+    lateinit var currentWeatherPresenter: CurrentWeatherPresenter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,17 +56,19 @@ class CurrentWeatherFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        currentWeatherPresenter = (activity?.application as App).appComponent.getCurrentWeatherPresenter()
+
         initViews()
 
-        if ((activity as MainActivity).isCanGreet) {
+        if ((activity as MainActivity).mainPresenter.isCanGreet) {
             val spName =
                 (activity as MainActivity).mainPresenter.sharedPreferencesHelper.getUserName()
-            Log.d(TAG, "$spName")
             greetings.text =
                 "${getGreeting()} ${if (spName != "user_name_key") spName else resources.getString(R.string.user)}"
             greetings.show()
             hideGreetings()
-            (activity as MainActivity).isCanGreet = false
+            (activity as MainActivity).mainPresenter.isCanGreet = false
+            Log.d(TAG, "onActivityCreated: loh")
         }
 
         val responseFlowable: Flowable<Response> =

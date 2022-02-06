@@ -1,14 +1,30 @@
 package com.example.weatheronsteroids.ui.base
 
-import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
-abstract class BaseMvpPresenter<T : BaseMvpView> : MvpPresenter<T>() {
+abstract class BaseMvpPresenter<T : BaseMvpView> : MvpPresenter<T> {
 
-    private val disposables = CompositeDisposable()
+    var view: T? = null
+        set(value) {
+            if (value != null) {
+                view?.let { attachView(it) }
+            }
+            field = value
+        }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        disposables.clear()
+    override fun attachView(mvpView: T) {
+        view = mvpView
+    }
+
+    override fun viewIsReady() {
+        //not implemented yet
+    }
+
+    override fun detachView() {
+        view = null
+    }
+
+    override fun destroy() {
+        //not implemented yet
     }
 }
