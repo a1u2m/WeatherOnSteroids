@@ -1,7 +1,6 @@
 package com.example.weatheronsteroids.ui.settings
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +9,9 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.ui.main.MainActivity
+import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.google.android.material.textfield.TextInputEditText
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import io.reactivex.rxjava3.subscribers.DisposableSubscriber
-import java.util.concurrent.TimeUnit
 
 class SettingsFragment : Fragment(), SettingsView {
 
@@ -29,6 +23,8 @@ class SettingsFragment : Fragment(), SettingsView {
     private lateinit var launchCount: AppCompatTextView
     private lateinit var timeCount: AppCompatTextView
 
+    lateinit var presenter: SettingsPresenter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,85 +34,46 @@ class SettingsFragment : Fragment(), SettingsView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initViews()
+        presenter = (activity?.application as App).appComponent.getSettingsPresenter()
+        init()
     }
 
-    private fun humanTime(time: Int): String {
-        val hours: Int = time / 3600
-        val minutes: Int = (time - (hours * 3600)) / 60
-        val seconds: Int = time - hours * 3600 - minutes * 60
-
-        val sb = StringBuilder()
-        if (hours == 0) {
-            sb.append("00:")
-        } else {
-            sb.append("$hours:")
-        }
-        if (minutes == 0) {
-            sb.append("00:")
-        } else {
-            sb.append("$minutes:")
-        }
-        if (seconds == 0) {
-            sb.append("00")
-        } else {
-            sb.append("$seconds")
-        }
-        return sb.toString()
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
     }
 
-    private fun initViews() {
+    private fun init() {
+        presenter.attachView(this)
         incognitoCongrats = requireActivity().findViewById(R.id.incognito_congrats)
-
         inputName = requireActivity().findViewById(R.id.edit_name)
         inputName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val name = inputName.text.toString()
-                (activity as MainActivity).presenter.sharedPreferencesHelper.setName(name)
+                presenter.setName(name)
             }
             return@setOnEditorActionListener false
         }
 
         becomeIncognito = requireActivity().findViewById(R.id.become_incognito)
         becomeIncognito.setOnClickListener {
-            (activity as MainActivity).presenter.sharedPreferencesHelper.clearName()
-            incognitoCongrats.show()
-            hideGreetings()
+            presenter.onBecomeIncognitoClicked()
         }
 
         launchCount = requireActivity().findViewById(R.id.launch_count)
         launchCount.text =
-            "${resources.getString(R.string.app_launch_count)} ${(activity as MainActivity).presenter.sharedPreferencesHelper.getLaunch()}"
+            "${resources.getString(R.string.app_launch_count)} ${presenter.getLaunchCount()}"
 
         timeCount = requireActivity().findViewById(R.id.time_count)
         timeCount.text =
-            "${resources.getString(R.string.app_time_count)} ${humanTime((activity as MainActivity).presenter.sharedPreferencesHelper.getTime())}"
+            "${resources.getString(R.string.app_time_count)} ${presenter.humanTime()}"
     }
 
-    private fun hideGreetings() {
-        Flowable
-            .interval(1, TimeUnit.SECONDS)
-            .take(3)
-            .takeLast(1)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : DisposableSubscriber<Long>() {
+    override fun hideMessage() {
+        incognitoCongrats.hide()
+    }
 
-                override fun onNext(t: Long?) {
-                    //do nothing
-                }
-
-                override fun onComplete() {
-                    incognitoCongrats.hide()
-                }
-
-                override fun onError(t: Throwable?) {
-                    if (t != null) {
-                        Log.d(TAG, "onError: ${t.message}")
-                    } else {
-                        Log.d(TAG, "onError: t == null")
-                    }
-                }
-            })
+    override fun showMessage() {
+        incognitoCongrats.show()
     }
 }

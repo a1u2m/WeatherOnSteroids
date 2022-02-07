@@ -54,6 +54,11 @@ class CurrentWeatherFragment : Fragment(), CurrentWeatherView {
         presenter.setupFlowable()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
+    }
+
     private fun hideGreetings() {
         Flowable
             .interval(1, TimeUnit.SECONDS)

@@ -1,13 +1,54 @@
 package com.example.weatheronsteroids.ui.airpollution
 
+import android.util.Log
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
+import com.example.weatheronsteroids.model.CurrentAirPollution
 import com.example.weatheronsteroids.network.RetrofitHelper
 import com.example.weatheronsteroids.ui.base.BaseMvpPresenter
-import com.example.weatheronsteroids.ui.weather.CurrentWeatherView
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subscribers.DisposableSubscriber
 import javax.inject.Inject
 
 class AirPollutionPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
     val retrofitHelper: RetrofitHelper
-): BaseMvpPresenter<AirPollutionView>() {
+) : BaseMvpPresenter<AirPollutionView>() {
+
+    private val TAG = "AirPollutionPresenter"
+
+    private val LAT = "58.0174"
+    private val LON = "56.2855"
+    private val API_KEY = "3767cbc63512e48175b64b1b5664d14c"
+
+    fun setupFlowable() {
+        val flowable: Flowable<CurrentAirPollution> =
+            retrofitHelper.getApi().getCurrentAirPollution(LAT, LON, API_KEY)
+
+        flowable.take(1)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : DisposableSubscriber<CurrentAirPollution>() {
+
+                override fun onNext(t: CurrentAirPollution?) {
+                    if (t != null) {
+                        view?.fillViews(t)
+                    }
+                }
+
+                override fun onError(t: Throwable?) {
+                    view?.showToast()
+                    if (t != null) {
+                        Log.d(TAG, "onError: ${t.message}")
+                    } else {
+                        Log.d(TAG, "onError: t == null")
+                    }
+                }
+
+                override fun onComplete() {
+                    view?.hideProgressBar()
+                }
+            })
+    }
 }
