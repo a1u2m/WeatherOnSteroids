@@ -14,21 +14,19 @@ import javax.inject.Inject
 class CurrentWeatherPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
     val retrofitHelper: RetrofitHelper
-): BaseMvpPresenter<CurrentWeatherView>() {
+) : BaseMvpPresenter<CurrentWeatherView>() {
 
     private val TAG = "CurrentWeatherPresenter"
-
-    private val ID = "511180"
-    private val API_KEY = "3767cbc63512e48175b64b1b5664d14c"
-    private val LANG = "ru"
-    private val UNITS = "metric"
-
-
 
     fun setupFlowable() {
         val responseFlowable: Flowable<Response> =
             retrofitHelper.getApi()
-                .getCurrentWeather(ID, API_KEY, LANG, UNITS)
+                .getCurrentWeather(
+                    retrofitHelper.ID,
+                    retrofitHelper.API_KEY,
+                    retrofitHelper.LANG,
+                    retrofitHelper.UNITS
+                )
 
         responseFlowable.take(1)
             .subscribeOn(Schedulers.io())

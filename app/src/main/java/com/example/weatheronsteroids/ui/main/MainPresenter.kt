@@ -21,6 +21,8 @@ open class MainPresenter @Inject constructor(
 
     var timeCount = 0
 
+
+
     fun countTime() {
         var tempTimeCount = sharedPreferencesHelper.getTime()
         tempTimeCount += timeCount

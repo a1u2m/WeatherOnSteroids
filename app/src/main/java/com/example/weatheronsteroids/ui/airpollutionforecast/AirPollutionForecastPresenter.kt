@@ -18,13 +18,13 @@ class AirPollutionForecastPresenter @Inject constructor(
 
     private val TAG = "AirPollutionForecastAdapter"
 
-    private val LAT = "58.0174"
-    private val LON = "56.2855"
-    private val API_KEY = "3767cbc63512e48175b64b1b5664d14c"
-
     fun setupFlowable() {
         val flowable: Flowable<CurrentAirPollution> =
-            retrofitHelper.getApi().getCurrentAirPollutionForecast(LAT, LON, API_KEY)
+            retrofitHelper.getApi().getCurrentAirPollutionForecast(
+                retrofitHelper.LAT,
+                retrofitHelper.LON,
+                retrofitHelper.API_KEY
+            )
         flowable.take(1)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

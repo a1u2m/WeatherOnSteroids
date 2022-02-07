@@ -18,14 +18,14 @@ class WeatherForecastPresenter @Inject constructor(
 
     private val TAG = "WeatherForecastPresenter"
 
-    private val ID = "511180"
-    private val API_KEY = "3767cbc63512e48175b64b1b5664d14c"
-    private val LANG = "ru"
-    private val UNITS = "metric"
-
     fun setupFlowable() {
         val flowable: Flowable<Forecast> = retrofitHelper.getApi()
-            .getWeatherForecast(ID, API_KEY, LANG, UNITS)
+            .getWeatherForecast(
+                retrofitHelper.ID,
+                retrofitHelper.API_KEY,
+                retrofitHelper.LANG,
+                retrofitHelper.UNITS
+            )
         flowable.take(1)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

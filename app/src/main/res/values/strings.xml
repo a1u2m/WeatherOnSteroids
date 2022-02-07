@@ -54,6 +54,4 @@
     <string name="pm25_rate">Концентрация PM₂.₅ (мелкие примеси):</string>
     <string name="pm10_rate">Концентрация PM₁₀ (крупные примеси):</string>
     <string name="nh3_rate">Концентрация NH₃ (аммиак):</string>
-
-
 </resources>
