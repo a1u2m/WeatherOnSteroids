@@ -9,8 +9,6 @@ interface CurrentWeatherView: BaseMvpView {
 
     fun hideProgressBar()
 
-    fun showToast()
-
     fun greetUser(name: String)
 
 }

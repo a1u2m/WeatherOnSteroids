@@ -7,8 +7,6 @@ interface AirPollutionForecastView : BaseMvpView {
 
     fun fillViews(t: CurrentAirPollution)
 
-    fun showToast()
-
     fun hideProgressBar()
 
     fun setAdapter()

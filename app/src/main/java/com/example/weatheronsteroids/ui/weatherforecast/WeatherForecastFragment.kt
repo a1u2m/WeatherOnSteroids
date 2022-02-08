@@ -58,11 +58,6 @@ class WeatherForecastFragment : Fragment(), WeatherForecastView {
         responseList = forecastList[0].response
     }
 
-    override fun showToast() {
-        Toast.makeText(context, resources.getString(R.string.error), Toast.LENGTH_LONG)
-            .show()
-    }
-
     override fun hideProgressBar() {
         loading.visibility = View.GONE
         progressBar.visibility = View.GONE

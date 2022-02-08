@@ -97,9 +97,9 @@ class AirPollutionFragment : Fragment(), AirPollutionView {
         }
     }
 
-    override fun showToast() {
-        Toast.makeText(context, resources.getString(R.string.error), Toast.LENGTH_LONG).show()
-    }
+//    override fun showToast() {
+//        Toast.makeText(context, resources.getString(R.string.error), Toast.LENGTH_LONG).show()
+//    }
 
     override fun hideProgressBar() {
         loading.visibility = View.GONE

@@ -129,11 +129,6 @@ class CurrentWeatherFragment : Fragment(), CurrentWeatherView {
         progressBar.visibility = View.GONE
     }
 
-    override fun showToast() {
-        Toast.makeText(context, resources.getString(R.string.error), Toast.LENGTH_LONG)
-            .show()
-    }
-
     override fun greetUser(name: String) {
         greetings.text =
             "${getGreeting()} ${if (name != "user_name_key") name else resources.getString(R.string.user)}"

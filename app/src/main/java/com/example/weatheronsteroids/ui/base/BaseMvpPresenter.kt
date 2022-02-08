@@ -25,4 +25,20 @@ abstract class BaseMvpPresenter<T : BaseMvpView> : MvpPresenter<T> {
     override fun destroy() {
         //not implemented yet
     }
+
+//    fun onBackCommandClick() {
+//        router.exit()
+//    }
+//
+//    fun onForwardCommandClick() {
+//        router.navigateTo(Sample(screenNumber + 1))
+//    }
+//
+//    fun onReplaceCommandClick() {
+//        router.replaceScreen(Sample(screenNumber + 1))
+//    }
+//
+//    init {
+//        viewState?.setTitle("Screen $screenNumber")
+//    }
 }

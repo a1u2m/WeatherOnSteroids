@@ -7,8 +7,6 @@ interface WeatherForecastView: BaseMvpView {
 
     fun fillViews(t: Forecast)
 
-    fun showToast()
-
     fun hideProgressBar()
 
     fun setAdapter()

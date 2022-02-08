@@ -5,6 +5,7 @@ import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.model.Forecast
 import com.example.weatheronsteroids.network.RetrofitHelper
 import com.example.weatheronsteroids.ui.base.BaseMvpPresenter
+import com.example.weatheronsteroids.utils.secrettextview.ToastHelper
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 class WeatherForecastPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
-    val retrofitHelper: RetrofitHelper
+    val retrofitHelper: RetrofitHelper,
+    val toastHelper: ToastHelper
 ) : BaseMvpPresenter<WeatherForecastView>() {
 
     private val TAG = "WeatherForecastPresenter"
@@ -38,7 +40,7 @@ class WeatherForecastPresenter @Inject constructor(
                 }
 
                 override fun onError(t: Throwable?) {
-                    view?.showToast()
+                    toastHelper.showErrorToast()
                     if (t != null) {
                         Log.d(TAG, "onError: ${t.message}")
                     } else {

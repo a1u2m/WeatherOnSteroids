@@ -1,5 +1,7 @@
 package com.example.weatheronsteroids.di
 
+import com.example.weatheronsteroids.di.cicerone.LocalNavigationModule
+import com.example.weatheronsteroids.di.cicerone.NavigationModule
 import com.example.weatheronsteroids.di.sharedpreferences.SharedPreferencesHelperModule
 import com.example.weatheronsteroids.ui.airpollution.AirPollutionPresenter
 import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastPresenter
@@ -9,7 +11,12 @@ import com.example.weatheronsteroids.ui.weather.CurrentWeatherPresenter
 import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastPresenter
 import dagger.Component
 
-@Component (modules = [SharedPreferencesHelperModule::class])
+@Component(
+    modules = [
+        SharedPreferencesHelperModule::class,
+        NavigationModule::class,
+        LocalNavigationModule::class]
+)
 interface AppComponent {
 
     fun getMainActivityPresenter(): MainPresenter

@@ -7,8 +7,6 @@ interface AirPollutionView : BaseMvpView {
 
     fun fillViews(t: CurrentAirPollution)
 
-    fun showToast()
-
     fun hideProgressBar()
 
 }
