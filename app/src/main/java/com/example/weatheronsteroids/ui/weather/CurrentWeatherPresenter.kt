@@ -10,13 +10,14 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber
+import moxy.MvpPresenter
 import javax.inject.Inject
 
 class CurrentWeatherPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
     val retrofitHelper: RetrofitHelper,
     val toastHelper: ToastHelper
-) : BaseMvpPresenter<CurrentWeatherView>() {
+) : MvpPresenter<CurrentWeatherView>() {
 
     private val TAG = "CurrentWeatherPresenter"
 
@@ -37,7 +38,7 @@ class CurrentWeatherPresenter @Inject constructor(
 
                 override fun onNext(t: Response?) {
                     if (t != null) {
-                        view?.fillViews(t)
+                        viewState.fillViews(t)
                     }
                 }
 
@@ -51,14 +52,14 @@ class CurrentWeatherPresenter @Inject constructor(
                 }
 
                 override fun onComplete() {
-                    view?.hideProgressBar()
+                    viewState.hideProgressBar()
                 }
             })
     }
 
     fun isCanGreet() {
         if (sharedPreferencesHelper.getIsCanGreet()) {
-            sharedPreferencesHelper.getUserName()?.let { view?.greetUser(it) }
+            sharedPreferencesHelper.getUserName()?.let { viewState.greetUser(it) }
             sharedPreferencesHelper.putIsCanGreet()
         }
     }

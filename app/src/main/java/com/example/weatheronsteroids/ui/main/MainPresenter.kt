@@ -3,16 +3,16 @@ package com.example.weatheronsteroids.ui.main
 import android.util.Log
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.network.RetrofitHelper
-import com.example.weatheronsteroids.ui.base.BaseMvpPresenter
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observers.DisposableObserver
+import moxy.MvpPresenter
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-open class MainPresenter @Inject constructor(
+class MainPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
     val retrofitHelper: RetrofitHelper
-) : BaseMvpPresenter<MainView>() {
+) : MvpPresenter<MainView>() {
 
     private val TAG = "MainPresenter"
 
@@ -20,8 +20,6 @@ open class MainPresenter @Inject constructor(
     lateinit var timeCountDisposable: DisposableObserver<Long>
 
     var timeCount = 0
-
-
 
     fun countTime() {
         var tempTimeCount = sharedPreferencesHelper.getTime()
@@ -55,4 +53,6 @@ open class MainPresenter @Inject constructor(
     fun isCanGreetReset() {
         sharedPreferencesHelper.resetIsCanGreet()
     }
+
+
 }

@@ -11,8 +11,9 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.CurrentAirPollution
+import moxy.MvpAppCompatFragment
 
-class AirPollutionFragment : Fragment(), AirPollutionView {
+class AirPollutionFragment : MvpAppCompatFragment(), AirPollutionView {
 
     private val TAG = "AirPollutionFragment"
 
@@ -46,7 +47,7 @@ class AirPollutionFragment : Fragment(), AirPollutionView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.detachView()
+        presenter.detachView(this)
     }
 
     private fun init() {

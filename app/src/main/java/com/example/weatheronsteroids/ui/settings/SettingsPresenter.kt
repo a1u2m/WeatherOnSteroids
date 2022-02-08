@@ -8,13 +8,14 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber
+import moxy.MvpPresenter
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SettingsPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
     val retrofitHelper: RetrofitHelper
-) : BaseMvpPresenter<SettingsView>() {
+) : MvpPresenter<SettingsView>() {
 
     private val TAG = "SettingsPresenter"
 
@@ -54,7 +55,7 @@ class SettingsPresenter @Inject constructor(
 
     fun onBecomeIncognitoClicked() {
         sharedPreferencesHelper.clearName()
-        view?.showMessage()
+        viewState.showMessage()
         Flowable
             .interval(1, TimeUnit.SECONDS)
             .take(3)
@@ -68,7 +69,7 @@ class SettingsPresenter @Inject constructor(
                 }
 
                 override fun onComplete() {
-                    view?.hideMessage()
+                    viewState.hideMessage()
                 }
 
                 override fun onError(t: Throwable?) {

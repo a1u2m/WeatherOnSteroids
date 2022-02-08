@@ -10,13 +10,14 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber
+import moxy.MvpPresenter
 import javax.inject.Inject
 
 class AirPollutionForecastPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
     val retrofitHelper: RetrofitHelper,
     val toastHelper: ToastHelper
-) : BaseMvpPresenter<AirPollutionForecastView>() {
+) : MvpPresenter<AirPollutionForecastView>() {
 
     private val TAG = "AirPollutionForecastAdapter"
 
@@ -34,7 +35,7 @@ class AirPollutionForecastPresenter @Inject constructor(
 
                 override fun onNext(t: CurrentAirPollution?) {
                     if (t != null) {
-                        view?.fillViews(t)
+                        viewState.fillViews(t)
                     }
                 }
 
@@ -48,8 +49,8 @@ class AirPollutionForecastPresenter @Inject constructor(
                 }
 
                 override fun onComplete() {
-                    view?.setAdapter()
-                    view?.hideProgressBar()
+                    viewState.setAdapter()
+                    viewState.hideProgressBar()
                 }
             })
     }

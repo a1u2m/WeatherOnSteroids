@@ -10,13 +10,14 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber
+import moxy.MvpPresenter
 import javax.inject.Inject
 
 class WeatherForecastPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
     val retrofitHelper: RetrofitHelper,
     val toastHelper: ToastHelper
-) : BaseMvpPresenter<WeatherForecastView>() {
+) : MvpPresenter<WeatherForecastView>() {
 
     private val TAG = "WeatherForecastPresenter"
 
@@ -35,7 +36,7 @@ class WeatherForecastPresenter @Inject constructor(
 
                 override fun onNext(t: Forecast?) {
                     if (t != null) {
-                        view?.fillViews(t)
+                        viewState.fillViews(t)
                     }
                 }
 
@@ -49,8 +50,8 @@ class WeatherForecastPresenter @Inject constructor(
                 }
 
                 override fun onComplete() {
-                    view?.setAdapter()
-                    view?.hideProgressBar()
+                    viewState.setAdapter()
+                    viewState.hideProgressBar()
                 }
             })
     }

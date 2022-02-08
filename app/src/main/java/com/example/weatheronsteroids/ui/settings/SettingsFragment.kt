@@ -12,8 +12,9 @@ import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.google.android.material.textfield.TextInputEditText
+import moxy.MvpAppCompatFragment
 
-class SettingsFragment : Fragment(), SettingsView {
+class SettingsFragment : MvpAppCompatFragment(), SettingsView {
 
     private val TAG = "SettingsFragment"
 
@@ -40,7 +41,7 @@ class SettingsFragment : Fragment(), SettingsView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.detachView()
+        presenter.detachView(this)
     }
 
     private fun init() {

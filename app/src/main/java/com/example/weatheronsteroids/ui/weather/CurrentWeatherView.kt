@@ -2,13 +2,19 @@ package com.example.weatheronsteroids.ui.weather
 
 import com.example.weatheronsteroids.model.Response
 import com.example.weatheronsteroids.ui.base.BaseMvpView
+import moxy.MvpView
+import moxy.viewstate.strategy.AddToEndSingleStrategy
+import moxy.viewstate.strategy.StateStrategyType
 
-interface CurrentWeatherView: BaseMvpView {
+interface CurrentWeatherView: MvpView {
 
+    @StateStrategyType(value = AddToEndSingleStrategy::class)
     fun fillViews(t: Response)
 
+    @StateStrategyType(value = AddToEndSingleStrategy::class)
     fun hideProgressBar()
 
+    @StateStrategyType(value = AddToEndSingleStrategy::class)
     fun greetUser(name: String)
 
 }

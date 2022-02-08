@@ -19,10 +19,11 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subscribers.DisposableSubscriber
+import moxy.MvpAppCompatFragment
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class CurrentWeatherFragment : Fragment(), CurrentWeatherView {
+class CurrentWeatherFragment : MvpAppCompatFragment(), CurrentWeatherView {
 
     private val TAG = "CurrentWeatherFragment"
 
@@ -56,7 +57,7 @@ class CurrentWeatherFragment : Fragment(), CurrentWeatherView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.detachView()
+        presenter.detachView(this)
     }
 
     private fun hideGreetings() {

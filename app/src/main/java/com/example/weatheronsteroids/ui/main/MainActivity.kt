@@ -14,12 +14,14 @@ import com.example.weatheronsteroids.ui.weather.CurrentWeatherFragment
 import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastFragment
 import com.github.terrakok.cicerone.Cicerone
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import moxy.MvpAppCompatActivity
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : MvpAppCompatActivity(), MainView {
 
     private val TAG = "MainActivity"
 
     lateinit var presenter: MainPresenter
+
 
     var fragment = Fragment()
     private lateinit var bottomPanel: BottomNavigationView

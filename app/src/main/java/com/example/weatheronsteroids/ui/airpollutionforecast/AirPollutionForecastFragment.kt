@@ -12,8 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.*
+import moxy.MvpAppCompatFragment
 
-class AirPollutionForecastFragment : Fragment(), AirPollutionForecastView {
+class AirPollutionForecastFragment : MvpAppCompatFragment(), AirPollutionForecastView {
 
     private val TAG = "AirPollutionForecastFragment"
 
@@ -42,7 +43,7 @@ class AirPollutionForecastFragment : Fragment(), AirPollutionForecastView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.detachView()
+        presenter.detachView(this)
     }
 
     private fun init() {

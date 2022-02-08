@@ -13,8 +13,9 @@ import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.Forecast
 import com.example.weatheronsteroids.model.Response
+import moxy.MvpAppCompatFragment
 
-class WeatherForecastFragment : Fragment(), WeatherForecastView {
+class WeatherForecastFragment : MvpAppCompatFragment(), WeatherForecastView {
 
     private val TAG = "WeatherForecastFragment"
 
@@ -43,7 +44,7 @@ class WeatherForecastFragment : Fragment(), WeatherForecastView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.detachView()
+        presenter.detachView(this)
     }
 
     private fun init() {
