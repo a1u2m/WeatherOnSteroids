@@ -8,14 +8,14 @@
     tools:context=".ui.airpollutionforecast.AirPollutionForecastFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_air_pollution_forecast"
+        android:id="@+id/air_pollution_forecast_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/standard_margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/loading_air_pollution_forecast"
+        android:id="@+id/air_pollution_forecast_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/standard_margin"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progress_bar_air_pollution_forecast"
+        android:id="@+id/air_pollution_forecast_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/standard_margin"
@@ -35,6 +35,6 @@
         android:indeterminateTintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loading_air_pollution_forecast" />
+        app:layout_constraintTop_toBottomOf="@id/air_pollution_forecast_loading" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

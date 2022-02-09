@@ -82,16 +82,16 @@ class CurrentWeatherFragment : MvpAppCompatFragment(), CurrentWeatherView {
     }
 
     private fun init() {
-        icon = requireActivity().findViewById(R.id.icon_current)
-        description = requireActivity().findViewById(R.id.description_current)
-        temp = requireActivity().findViewById(R.id.temp_current)
-        feelsLike = requireActivity().findViewById(R.id.feels_like_current)
-        pressure = requireActivity().findViewById(R.id.pressure_current)
-        humidity = requireActivity().findViewById(R.id.humidity_current)
-        speed = requireActivity().findViewById(R.id.speed_current)
-        loading = requireActivity().findViewById(R.id.loading_current)
-        progressBar = requireActivity().findViewById(R.id.progress_bar_current)
-        greetings = requireActivity().findViewById(R.id.greetings_current)
+        icon = requireActivity().findViewById(R.id.weather_current_icon)
+        description = requireActivity().findViewById(R.id.weather_current_description)
+        temp = requireActivity().findViewById(R.id.weather_current_temp)
+        feelsLike = requireActivity().findViewById(R.id.weather_current_feels_like)
+        pressure = requireActivity().findViewById(R.id.weather_current_pressure)
+        humidity = requireActivity().findViewById(R.id.weather_current_humidity)
+        speed = requireActivity().findViewById(R.id.weather_current_speed)
+        loading = requireActivity().findViewById(R.id.weather_current_loading)
+        progressBar = requireActivity().findViewById(R.id.weather_current_progress_bar)
+        greetings = requireActivity().findViewById(R.id.weather_current_greetings)
         presenter.attachView(this)
     }
 

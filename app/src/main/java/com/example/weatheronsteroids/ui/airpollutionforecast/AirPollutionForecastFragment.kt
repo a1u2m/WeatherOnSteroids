@@ -46,9 +46,9 @@ class AirPollutionForecastFragment : MvpAppCompatFragment(), AirPollutionForecas
     }
 
     private fun init() {
-        recycler = requireActivity().findViewById(R.id.recycler_air_pollution_forecast)
-        loading = requireActivity().findViewById(R.id.loading_air_pollution_forecast)
-        progressBar = requireActivity().findViewById(R.id.progress_bar_air_pollution_forecast)
+        recycler = requireActivity().findViewById(R.id.air_pollution_forecast_recycler)
+        loading = requireActivity().findViewById(R.id.air_pollution_forecast_loading)
+        progressBar = requireActivity().findViewById(R.id.air_pollution_forecast_progress_bar)
         presenter.attachView(this)
     }
 

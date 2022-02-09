@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/standard_margin"
-    android:background="@color/primary"
-    app:cardCornerRadius="16dp">
+    app:cardBackgroundColor="@color/primary_light"
+    android:theme="@style/Theme.MaterialComponents.DayNight"
+    app:cardCornerRadius="16dp"
+    app:strokeColor="@color/primary"
+    app:strokeWidth="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/weather_icon_forecast"
+            android:id="@+id/weather_forecast_icon"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="4dp"
@@ -22,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weather_time_and_date_forecast"
+            android:id="@+id/weather_forecast_time_and_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard_margin"
@@ -32,63 +35,64 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weather_description_forecast"
+            android:id="@+id/weather_forecast_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard_margin"
             android:text="@string/description"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/weather_time_and_date_forecast" />
+            app:layout_constraintTop_toBottomOf="@id/weather_forecast_time_and_date" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weather_temp_forecast"
+            android:id="@+id/weather_forecast_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard_margin"
             android:text="@string/temp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/weather_description_forecast" />
+            app:layout_constraintTop_toBottomOf="@id/weather_forecast_description" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weather_feels_like_forecast"
+            android:id="@+id/weather_forecast_feels_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard_margin"
             android:text="@string/feels_like"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@id/weather_temp_forecast"
-            app:layout_constraintTop_toBottomOf="@id/weather_description_forecast" />
+            app:layout_constraintStart_toEndOf="@id/weather_forecast_temp"
+            app:layout_constraintTop_toBottomOf="@id/weather_forecast_description" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weather_pressure_forecast"
+            android:id="@+id/weather_forecast_pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard_margin"
             android:text="@string/pressure"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/weather_temp_forecast" />
+            app:layout_constraintTop_toBottomOf="@id/weather_forecast_temp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weather_humidity_forecast"
+            android:id="@+id/weather_forecast_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard_margin"
             android:text="@string/humidity"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@id/weather_pressure_forecast"
-            app:layout_constraintTop_toBottomOf="@id/weather_temp_forecast" />
+            app:layout_constraintStart_toEndOf="@id/weather_forecast_pressure"
+            app:layout_constraintTop_toBottomOf="@id/weather_forecast_temp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weather_speed_forecast"
+            android:id="@+id/weather_forecast_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standard_margin"
             android:text="@string/speed"
             android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/weather_pressure_forecast" />
+            app:layout_constraintTop_toBottomOf="@id/weather_forecast_pressure" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

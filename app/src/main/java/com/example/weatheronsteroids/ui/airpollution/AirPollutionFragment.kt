@@ -58,8 +58,8 @@ class AirPollutionFragment : MvpAppCompatFragment(), AirPollutionView {
         pm25 = requireActivity().findViewById(R.id.air_pollution_current_pm2_5)
         pm10 = requireActivity().findViewById(R.id.air_pollution_current_pm10)
         nh3 = requireActivity().findViewById(R.id.air_pollution_current_nh3)
-        progressBar = requireActivity().findViewById(R.id.current_progress_bar_air_pollution)
-        loading = requireActivity().findViewById(R.id.current_loading_air_pollution)
+        progressBar = requireActivity().findViewById(R.id.air_pollution_current_progress_bar)
+        loading = requireActivity().findViewById(R.id.air_pollution_current_loading)
         presenter.attachView(this)
     }
 

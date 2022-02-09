@@ -71,15 +71,15 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var icon: AppCompatImageView = itemView.findViewById(R.id.weather_icon_forecast)
+        var icon: AppCompatImageView = itemView.findViewById(R.id.weather_forecast_icon)
         var timeAndDate: AppCompatTextView =
-            itemView.findViewById(R.id.weather_time_and_date_forecast)
+            itemView.findViewById(R.id.weather_forecast_time_and_date)
         var description: AppCompatTextView =
-            itemView.findViewById(R.id.weather_description_forecast)
-        var temp: AppCompatTextView = itemView.findViewById(R.id.weather_temp_forecast)
-        var feelsLike: AppCompatTextView = itemView.findViewById(R.id.weather_feels_like_forecast)
-        var pressure: AppCompatTextView = itemView.findViewById(R.id.weather_pressure_forecast)
-        var humidity: AppCompatTextView = itemView.findViewById(R.id.weather_humidity_forecast)
-        var speed: AppCompatTextView = itemView.findViewById(R.id.weather_speed_forecast)
+            itemView.findViewById(R.id.weather_forecast_description)
+        var temp: AppCompatTextView = itemView.findViewById(R.id.weather_forecast_temp)
+        var feelsLike: AppCompatTextView = itemView.findViewById(R.id.weather_forecast_feels_like)
+        var pressure: AppCompatTextView = itemView.findViewById(R.id.weather_forecast_pressure)
+        var humidity: AppCompatTextView = itemView.findViewById(R.id.weather_forecast_humidity)
+        var speed: AppCompatTextView = itemView.findViewById(R.id.weather_forecast_speed)
     }
 }

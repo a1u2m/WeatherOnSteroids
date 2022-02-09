@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_pm10" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/current_loading_air_pollution"
+        android:id="@+id/air_pollution_current_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/standard_margin"
@@ -112,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_nh3" />
 
     <ProgressBar
-        android:id="@+id/current_progress_bar_air_pollution"
+        android:id="@+id/air_pollution_current_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/standard_margin"
@@ -121,7 +121,7 @@
         android:indeterminateTintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/current_loading_air_pollution" />
+        app:layout_constraintTop_toBottomOf="@id/air_pollution_current_loading" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

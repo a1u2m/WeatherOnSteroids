@@ -46,9 +46,9 @@ class WeatherForecastFragment : MvpAppCompatFragment(), WeatherForecastView {
     }
 
     private fun init() {
-        recycler = requireActivity().findViewById(R.id.recycler_weather_forecast)
-        loading = requireActivity().findViewById(R.id.loading_weather_forecast)
-        progressBar = requireActivity().findViewById(R.id.progress_bar_weather_forecast)
+        recycler = requireActivity().findViewById(R.id.weather_forecast_recycler)
+        loading = requireActivity().findViewById(R.id.weather_forecast_loading)
+        progressBar = requireActivity().findViewById(R.id.weather_forecast_progress_bar)
         presenter.attachView(this)
     }
 
