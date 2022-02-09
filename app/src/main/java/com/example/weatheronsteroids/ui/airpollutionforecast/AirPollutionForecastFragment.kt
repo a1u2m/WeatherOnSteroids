@@ -1,17 +1,16 @@
 package com.example.weatheronsteroids.ui.airpollutionforecast
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
-import com.example.weatheronsteroids.model.*
+import com.example.weatheronsteroids.model.AirQualityAndComponents
+import com.example.weatheronsteroids.model.CurrentAirPollution
 import moxy.MvpAppCompatFragment
 
 class AirPollutionForecastFragment : MvpAppCompatFragment(), AirPollutionForecastView {

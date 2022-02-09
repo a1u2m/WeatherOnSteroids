@@ -4,7 +4,6 @@ import android.util.Log
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.model.Forecast
 import com.example.weatheronsteroids.network.RetrofitHelper
-import com.example.weatheronsteroids.ui.base.BaseMvpPresenter
 import com.example.weatheronsteroids.utils.secrettextview.ToastHelper
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable

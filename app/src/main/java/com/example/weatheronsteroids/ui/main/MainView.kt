@@ -1,7 +1,6 @@
 package com.example.weatheronsteroids.ui.main
 
 import androidx.fragment.app.Fragment
-import com.example.weatheronsteroids.ui.base.BaseMvpView
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType

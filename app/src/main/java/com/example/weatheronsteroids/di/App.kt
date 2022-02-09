@@ -2,7 +2,6 @@ package com.example.weatheronsteroids.di
 
 import android.app.Application
 import com.example.weatheronsteroids.di.sharedpreferences.SharedPreferencesHelperModule
-import com.example.weatheronsteroids.ui.main.MainActivity
 import com.github.terrakok.cicerone.Cicerone
 
 class App: Application() {
