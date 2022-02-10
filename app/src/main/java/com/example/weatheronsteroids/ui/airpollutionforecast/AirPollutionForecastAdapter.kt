@@ -22,7 +22,7 @@ class AirPollutionForecastAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val view = inflater.inflate(R.layout.recycler_air_forecast_item, parent, false)
+        val view = inflater.inflate(R.layout.air_forecast_item, parent, false)
         return ViewHolder(view)
     }
 

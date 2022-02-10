@@ -1,4 +1,4 @@
-package com.example.weatheronsteroids.utils.secrettextview
+package com.example.weatheronsteroids.utils
 
 import android.content.Context
 import android.widget.Toast
