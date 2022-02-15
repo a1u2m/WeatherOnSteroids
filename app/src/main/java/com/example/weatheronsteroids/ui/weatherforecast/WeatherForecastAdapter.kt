@@ -27,7 +27,7 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
         val pictureLink =
             "https://openweathermap.org/img/wn/${responseList.weather[0].icon}@2x.png"
 
-        holder.timeAndDate.text = "${context.resources.getString(R.string.time_and_date)} ${
+        holder.time.text = "${context.resources.getString(R.string.time)} ${
             transformDateToRussian(responseList)
         }"
         holder.description.text =
@@ -56,24 +56,15 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
     private fun transformDateToRussian(responseList: Response): StringBuilder {
         val sb = StringBuilder()
         val timeAndDate = responseList.dt_txt
-        val date = timeAndDate.substring(8, 10)
-        val month = timeAndDate.substring(5, 7)
-        val year = timeAndDate.substring(0, 4)
         val time = timeAndDate.substring(11)
-        sb.append(date)
-        sb.append("-")
-        sb.append(month)
-        sb.append("-")
-        sb.append(year)
-        sb.append(" ")
         sb.append(time)
         return sb
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var icon: AppCompatImageView = itemView.findViewById(R.id.weather_forecast_icon)
-        var timeAndDate: AppCompatTextView =
-            itemView.findViewById(R.id.weather_forecast_time_and_date)
+        var time: AppCompatTextView =
+            itemView.findViewById(R.id.weather_forecast_time)
         var description: AppCompatTextView =
             itemView.findViewById(R.id.weather_forecast_description)
         var temp: AppCompatTextView = itemView.findViewById(R.id.weather_forecast_temp)

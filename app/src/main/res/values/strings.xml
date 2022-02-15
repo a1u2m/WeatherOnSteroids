@@ -11,6 +11,8 @@
     <string name="humidity">Влажность: </string>
     <string name="speed">Скорость ветра: </string>
     <string name="time_and_date">Дата и время:</string>
+    <string name="date">Дата:</string>
+    <string name="time">Время:</string>
 
     <!-- Для состояния загрузки -->
     <string name="loading">Идет получение данных погоды</string>

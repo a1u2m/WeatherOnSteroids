@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.AirQualityAndComponents
+import com.example.weatheronsteroids.model.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,8 +30,8 @@ class AirPollutionForecastAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val responseList = list[position]
 
-        holder.timeAndDate.text =
-            "${context.resources.getString(R.string.time_and_date)} ${epochToDate(responseList.dt)}"
+        holder.time.text =
+            "${context.resources.getString(R.string.time)} ${epochToDate(responseList.dt)}"
         holder.airRate.text =
             "${context.resources.getString(R.string.air_rate)} ${responseList.airPollutionMain.aqi}"
         holder.co.text =
@@ -56,14 +57,14 @@ class AirPollutionForecastAdapter(
     }
 
     private fun epochToDate(string: String): String {
-        val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
-        val netDate = Date(string.toLong() * 1000)
-        return sdf.format(netDate)
+        val sdf = SimpleDateFormat("HH:mm:ss")
+        val time = Date(string.toLong() * 1000)
+        return sdf.format(time)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val timeAndDate: AppCompatTextView =
-            itemView.findViewById(R.id.air_pollution_forecast_time_and_date)
+        val time: AppCompatTextView =
+            itemView.findViewById(R.id.air_pollution_forecast_time)
         val airRate: AppCompatTextView = itemView.findViewById(R.id.air_pollution_forecast_air_rate)
         val co: AppCompatTextView = itemView.findViewById(R.id.air_pollution_forecast_co)
         val no: AppCompatTextView = itemView.findViewById(R.id.air_pollution_forecast_no)

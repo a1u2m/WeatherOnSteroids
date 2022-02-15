@@ -9,6 +9,7 @@ import com.example.weatheronsteroids.ui.weather.CurrentWeatherPresenter
 import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastPresenter
 import dagger.Component
 
+@AppScope
 @Component(
     modules = [
         SharedPreferencesHelperModule::class]

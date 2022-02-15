@@ -2,6 +2,7 @@ package com.example.weatheronsteroids.ui.weatherforecast
 
 import android.util.Log
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
+import com.example.weatheronsteroids.di.AppScope
 import com.example.weatheronsteroids.model.Forecast
 import com.example.weatheronsteroids.model.Response
 import com.example.weatheronsteroids.network.RetrofitHelper
@@ -13,6 +14,7 @@ import io.reactivex.rxjava3.subscribers.DisposableSubscriber
 import moxy.MvpPresenter
 import javax.inject.Inject
 
+@AppScope
 class WeatherForecastPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
     val retrofitHelper: RetrofitHelper,
@@ -39,7 +41,6 @@ class WeatherForecastPresenter @Inject constructor(
 
                 override fun onNext(t: Forecast?) {
                     if (t != null) {
-                        viewState.fillViews(t)
 
                         //пошла жара
 
@@ -51,7 +52,7 @@ class WeatherForecastPresenter @Inject constructor(
                         }
 
                         //сую в мапу респонсы по их датам, чтоб в каждую дату были только свои респонсы
-
+                        var count = 0
                         for (i in dateList.indices) {
                             val responsesByDate = mutableListOf<Response>()
                             for (j in t.response.indices) {
@@ -60,11 +61,13 @@ class WeatherForecastPresenter @Inject constructor(
                                 }
                             }
                             dateMap[dateList[i]] = responsesByDate
+                            if (count == 0) {
+                                viewState.fillViews(responsesByDate)
+                                count++
+                            }
                         }
 
-                        transformDateToRussian(t.response[0].dt_txt)
-                        transformDateToRussian(t.response[1].dt_txt)
-                        transformDateToRussian(t.response[39].dt_txt)
+                        viewState.fillDates(dateMap.keys)
                     }
                 }
 
@@ -82,6 +85,11 @@ class WeatherForecastPresenter @Inject constructor(
                     viewState.hideProgressBar()
                 }
             })
+    }
+
+    fun fillViews(key: String) {
+        viewState.fillViews(dateMap.getValue(key).toMutableList())
+        viewState.resetAdapter()
     }
 
     companion object {
