@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.AirQualityAndComponents
-import com.example.weatheronsteroids.ui.weatherforecast.WeatherDateAdapter
 import moxy.MvpAppCompatFragment
 
 class AirPollutionForecastFragment : MvpAppCompatFragment(), AirPollutionForecastView {

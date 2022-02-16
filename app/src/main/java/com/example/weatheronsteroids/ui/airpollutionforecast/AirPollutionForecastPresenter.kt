@@ -5,9 +5,7 @@ import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.di.AppScope
 import com.example.weatheronsteroids.model.AirQualityAndComponents
 import com.example.weatheronsteroids.model.CurrentAirPollution
-import com.example.weatheronsteroids.model.Response
 import com.example.weatheronsteroids.network.RetrofitHelper
-import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastPresenter
 import com.example.weatheronsteroids.utils.ToastHelper
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -44,7 +42,6 @@ class AirPollutionForecastPresenter @Inject constructor(
 
                 override fun onNext(t: CurrentAirPollution?) {
                     if (t != null) {
-                        //пошла жара
 
                         //получаю даты
                         for (i in t.airQualityAndComponents.indices) {
@@ -66,7 +63,7 @@ class AirPollutionForecastPresenter @Inject constructor(
                             }
                             dateMap[dateList[i]] = responsesByDate
                             if (count == 0) {
-                                viewState.fillViews(responsesByDate)
+                                viewState.fillViews(responsesByDate) //отправляю нужный список в фрагмент, чтобы отрисовались данные по текущей дате
                                 count++
                             }
                         }

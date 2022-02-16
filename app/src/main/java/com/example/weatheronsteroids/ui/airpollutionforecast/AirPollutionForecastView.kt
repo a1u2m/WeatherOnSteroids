@@ -1,8 +1,6 @@
 package com.example.weatheronsteroids.ui.airpollutionforecast
 
 import com.example.weatheronsteroids.model.AirQualityAndComponents
-import com.example.weatheronsteroids.model.CurrentAirPollution
-import com.example.weatheronsteroids.model.Response
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType

@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.AirQualityAndComponents
-import com.example.weatheronsteroids.model.Response
 import java.text.SimpleDateFormat
 import java.util.*
 

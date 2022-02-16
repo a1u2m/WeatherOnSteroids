@@ -1,6 +1,5 @@
 package com.example.weatheronsteroids.ui.weatherforecast
 
-import com.example.weatheronsteroids.model.Forecast
 import com.example.weatheronsteroids.model.Response
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy

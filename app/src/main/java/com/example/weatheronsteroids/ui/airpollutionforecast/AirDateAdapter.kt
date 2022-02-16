@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
-import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastPresenter
 
 class AirDateAdapter(private val context: Context, val list: List<String>) :
     RecyclerView.Adapter<AirDateAdapter.ViewHolder>() {

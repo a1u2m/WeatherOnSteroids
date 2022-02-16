@@ -42,8 +42,6 @@ class WeatherForecastPresenter @Inject constructor(
                 override fun onNext(t: Forecast?) {
                     if (t != null) {
 
-                        //пошла жара
-
                         //получаю даты
                         for (i in t.response.indices) {
                             val date = transformDateToRussian(t.response[i].dt_txt).substring(0, 5)
@@ -62,7 +60,7 @@ class WeatherForecastPresenter @Inject constructor(
                             }
                             dateMap[dateList[i]] = responsesByDate
                             if (count == 0) {
-                                viewState.fillViews(responsesByDate)
+                                viewState.fillViews(responsesByDate) //отправляю нужный список в фрагмент, чтобы отрисовались данные по текущей дате
                                 count++
                             }
                         }
