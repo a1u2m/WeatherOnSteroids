@@ -9,116 +9,101 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_air_rate"
+        style="@style/recyclerMainItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
         android:text="@string/air_rate"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_co"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/co_rate"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_air_rate" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_no"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/no_rate"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_co" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_no2"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/no2_rate"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_no" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_o3"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/o3_rate"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_no2" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_so2"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/so2_rate"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_o3" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_pm2_5"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/pm25_rate"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_so2" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_pm10"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/pm10_rate"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_pm2_5" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_nh3"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/nh3_rate"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_pm10" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/air_pollution_current_loading"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/loading"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_nh3" />
 
     <ProgressBar
         android:id="@+id/air_pollution_current_progress_bar"
+        style="@style/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/primary_dark"
-        android:indeterminateTintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/air_pollution_current_loading" />

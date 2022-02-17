@@ -9,12 +9,11 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/hint"
+        style="@style/recyclerItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:gravity="center_horizontal"
         android:text="@string/enter_your_name_text_view"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,9 +38,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/become_incognito"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:background="@color/primary_dark"
         android:padding="4dp"
         android:text="@string/become_incognito"
@@ -51,9 +50,9 @@
 
     <com.example.weatheronsteroids.utils.secrettextview.SecretTextView
         android:id="@+id/incognito_congrats"
+        style="@style/recyclerItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:gravity="center_horizontal"
         android:text="Поздравляем, вы стали инкогнито"
         android:textColor="@color/primary_dark"
@@ -62,21 +61,19 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/launch_count"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/app_launch_count"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/become_incognito" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/time_count"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/app_time_count"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/launch_count" />
 </androidx.constraintlayout.widget.ConstraintLayout>

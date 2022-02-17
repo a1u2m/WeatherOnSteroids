@@ -2,14 +2,10 @@
 
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/recyclerCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/standard_margin"
-    android:theme="@style/Theme.MaterialComponents.DayNight"
-    app:cardBackgroundColor="@color/primary_light"
-    app:cardCornerRadius="16dp"
-    app:strokeColor="@color/primary"
-    app:strokeWidth="2dp">
+    android:theme="@style/Theme.MaterialComponents.DayNight">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,71 +22,64 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weather_forecast_time"
+            style="@style/recyclerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_margin"
             android:text="@string/time"
-            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weather_forecast_description"
+            style="@style/recyclerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_margin"
             android:text="@string/description"
-            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weather_forecast_time" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weather_forecast_temp"
+            style="@style/recyclerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_margin"
             android:text="@string/temp"
-            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weather_forecast_description" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weather_forecast_feels_like"
+            style="@style/recyclerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_margin"
             android:text="@string/feels_like"
-            android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@id/weather_forecast_temp"
             app:layout_constraintTop_toBottomOf="@id/weather_forecast_description" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weather_forecast_pressure"
+            style="@style/recyclerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_margin"
             android:text="@string/pressure"
-            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weather_forecast_temp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weather_forecast_humidity"
+            style="@style/recyclerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_margin"
             android:text="@string/humidity"
-            android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@id/weather_forecast_pressure"
             app:layout_constraintTop_toBottomOf="@id/weather_forecast_temp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weather_forecast_speed"
+            style="@style/recyclerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_margin"
             android:text="@string/speed"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weather_forecast_pressure" />

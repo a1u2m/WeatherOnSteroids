@@ -18,83 +18,73 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/weather_current_description"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/description"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/weather_current_temp"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/temp"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_current_description" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/weather_current_feels_like"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/feels_like"
-        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/weather_current_temp"
         app:layout_constraintTop_toBottomOf="@id/weather_current_description" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/weather_current_pressure"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/pressure"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_current_temp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/weather_current_humidity"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/humidity"
-        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/weather_current_pressure"
         app:layout_constraintTop_toBottomOf="@id/weather_current_temp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/weather_current_speed"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/speed"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_current_pressure" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/weather_current_loading"
+        style="@style/recyclerItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
         android:text="@string/loading"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_current_speed" />
 
     <ProgressBar
         android:id="@+id/weather_current_progress_bar"
+        style="@style/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/primary_dark"
-        android:indeterminateTintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_current_loading" />
