@@ -11,7 +11,7 @@ import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.CurrentAirPollution
 import moxy.MvpAppCompatFragment
 
-class AirPollutionFragment : MvpAppCompatFragment(), AirPollutionView {
+class AirPollutionFragment : MvpAppCompatFragment(R.layout.fragment_air_pollution), AirPollutionView {
 
     private val TAG = "AirPollutionFragment"
 
@@ -28,13 +28,6 @@ class AirPollutionFragment : MvpAppCompatFragment(), AirPollutionView {
     lateinit var loading: AppCompatTextView
 
     private lateinit var presenter: AirPollutionPresenter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_air_pollution, container, false)
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

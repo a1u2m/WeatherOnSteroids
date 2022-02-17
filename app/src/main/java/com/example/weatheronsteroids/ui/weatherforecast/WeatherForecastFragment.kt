@@ -13,7 +13,7 @@ import com.example.weatheronsteroids.model.Response
 import moxy.MvpAppCompatFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 
-class WeatherForecastFragment : MvpAppCompatFragment(), WeatherForecastView {
+class WeatherForecastFragment : MvpAppCompatFragment(R.layout.fragment_weather_forecast), WeatherForecastView {
 
     private val TAG = "WeatherForecastFragment"
 
@@ -26,13 +26,6 @@ class WeatherForecastFragment : MvpAppCompatFragment(), WeatherForecastView {
     private var dateList = mutableListOf<String>()
 
     lateinit var presenter: WeatherForecastPresenter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_weather_forecast, container, false)
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

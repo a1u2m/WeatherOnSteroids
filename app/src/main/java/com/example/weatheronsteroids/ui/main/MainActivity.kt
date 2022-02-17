@@ -19,7 +19,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     lateinit var presenter: MainPresenter
 
-
     var fragment = Fragment()
     private lateinit var bottomPanel: BottomNavigationView
 

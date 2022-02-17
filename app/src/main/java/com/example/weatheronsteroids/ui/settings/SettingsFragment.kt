@@ -13,7 +13,7 @@ import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.google.android.material.textfield.TextInputEditText
 import moxy.MvpAppCompatFragment
 
-class SettingsFragment : MvpAppCompatFragment(), SettingsView {
+class SettingsFragment : MvpAppCompatFragment(R.layout.fragment_settings), SettingsView {
 
     private val TAG = "SettingsFragment"
 
@@ -24,13 +24,6 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsView {
     private lateinit var timeCount: AppCompatTextView
 
     lateinit var presenter: SettingsPresenter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_settings, container, false)
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

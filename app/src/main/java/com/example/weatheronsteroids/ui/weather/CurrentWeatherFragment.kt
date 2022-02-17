@@ -21,7 +21,7 @@ import moxy.MvpAppCompatFragment
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class CurrentWeatherFragment : MvpAppCompatFragment(), CurrentWeatherView {
+class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_weather), CurrentWeatherView {
 
     private val TAG = "CurrentWeatherFragment"
 
@@ -37,13 +37,6 @@ class CurrentWeatherFragment : MvpAppCompatFragment(), CurrentWeatherView {
     lateinit var greetings: SecretTextView
 
     private lateinit var presenter: CurrentWeatherPresenter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_current_weather, container, false)
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
