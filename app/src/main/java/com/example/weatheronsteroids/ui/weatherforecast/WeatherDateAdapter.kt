@@ -42,9 +42,7 @@ class WeatherDateAdapter(private val context: Context, val list: List<String>) :
         )
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
+    override fun getItemCount(): Int = list.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var timeAndDate: AppCompatTextView =

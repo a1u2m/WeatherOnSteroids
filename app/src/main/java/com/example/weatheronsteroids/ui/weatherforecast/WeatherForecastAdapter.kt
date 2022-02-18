@@ -71,9 +71,7 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
         load(pictureLink, holder.icon)
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
+    override fun getItemCount(): Int = list.size
 
     private fun transformDateToRussian(responseList: Response): StringBuilder {
         val sb = StringBuilder()

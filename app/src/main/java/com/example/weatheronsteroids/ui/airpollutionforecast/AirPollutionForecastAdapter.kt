@@ -82,9 +82,8 @@ class AirPollutionForecastAdapter(
         )
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
+    override fun getItemCount(): Int = list.size
+
 
     private fun epochToDate(string: String): String {
         val sdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
