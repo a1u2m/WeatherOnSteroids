@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.Response
+import com.example.weatheronsteroids.utils.load
 import com.example.weatheronsteroids.utils.string
 import com.squareup.picasso.Picasso
 
@@ -44,10 +45,7 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
         holder.speed.text =
             "${context.resources.getString(R.string.speed)} ${responseList.wind.speed} м/с"
 
-        Picasso.get()
-            .load(pictureLink)
-            .error(R.drawable.ic_weather_placeholder)
-            .into(holder.icon)
+        holder.icon.load(pictureLink, holder.icon)
     }
 
     override fun getItemCount(): Int {

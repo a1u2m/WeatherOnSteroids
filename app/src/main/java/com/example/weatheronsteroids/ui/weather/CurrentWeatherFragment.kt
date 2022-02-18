@@ -10,6 +10,7 @@ import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.Response
 import com.example.weatheronsteroids.utils.gone
+import com.example.weatheronsteroids.utils.load
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.example.weatheronsteroids.utils.string
 import com.squareup.picasso.Picasso
@@ -113,10 +114,7 @@ class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_we
         val pictureLink =
             "https://openweathermap.org/img/wn/${t.weather[0].icon}@2x.png"
 
-        Picasso.get()
-            .load(pictureLink)
-            .error(R.drawable.ic_weather_placeholder)
-            .into(icon)
+        icon.load(pictureLink, icon)
     }
 
     override fun hideProgressBar() {
