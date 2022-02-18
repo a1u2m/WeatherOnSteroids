@@ -1,10 +1,11 @@
 package com.example.weatheronsteroids.ui.airpollution
 
+import android.content.Context
 import android.util.Log
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.model.CurrentAirPollution
 import com.example.weatheronsteroids.network.RetrofitHelper
-import com.example.weatheronsteroids.utils.ToastHelper
+import com.example.weatheronsteroids.utils.showError
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class AirPollutionPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
     val retrofitHelper: RetrofitHelper,
-    val toastHelper: ToastHelper
+    val context: Context
 ) : MvpPresenter<AirPollutionView>() {
 
     private val TAG = "AirPollutionPresenter"
@@ -40,7 +41,7 @@ class AirPollutionPresenter @Inject constructor(
                 }
 
                 override fun onError(t: Throwable?) {
-                    toastHelper.showErrorToast()
+                    showError(context)
                     if (t != null) {
                         Log.d(TAG, "onError: ${t.message}")
                     } else {

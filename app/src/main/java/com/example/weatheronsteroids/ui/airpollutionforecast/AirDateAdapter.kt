@@ -9,19 +9,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.utils.string
+import javax.inject.Inject
 
 class AirDateAdapter(private val context: Context, val list: List<String>) :
     RecyclerView.Adapter<AirDateAdapter.ViewHolder>() {
 
     private val TAG = "DateAdapter"
 
+    @Inject
     lateinit var presenter: AirPollutionForecastPresenter
 
     private val inflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = inflater.inflate(R.layout.dates_item, parent, false)
-        presenter = (context.applicationContext as App).appComponent.getAirPollutionForecastPresenter()
+        (context.applicationContext as App).appComponent.inject(this)
 
         view.setOnClickListener { p0 ->
             val itemPosition = (parent as RecyclerView).getChildLayoutPosition(p0!!)
