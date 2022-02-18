@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
+import com.example.weatheronsteroids.utils.string
 
 class WeatherDateAdapter(private val context: Context, val list: List<String>) :
     RecyclerView.Adapter<WeatherDateAdapter.ViewHolder>() {
@@ -33,7 +34,7 @@ class WeatherDateAdapter(private val context: Context, val list: List<String>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val date = list[position]
 
-        holder.timeAndDate.text = "${context.resources.getString(R.string.date)} $date"
+        holder.timeAndDate.text = "${context.string(R.string.date)} $date"
     }
 
     override fun getItemCount(): Int {

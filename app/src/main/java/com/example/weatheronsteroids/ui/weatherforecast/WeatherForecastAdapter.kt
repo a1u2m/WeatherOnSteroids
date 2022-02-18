@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.Response
+import com.example.weatheronsteroids.utils.string
 import com.squareup.picasso.Picasso
 
 class WeatherForecastAdapter(private val context: Context, private val list: List<Response>) :
@@ -27,7 +28,7 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
         val pictureLink =
             "https://openweathermap.org/img/wn/${responseList.weather[0].icon}@2x.png"
 
-        holder.time.text = "${context.resources.getString(R.string.time)} ${
+        holder.time.text = "${context.string(R.string.time)} ${
             transformDateToRussian(responseList)
         }"
         holder.description.text =

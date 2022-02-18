@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.AirQualityAndComponents
+import com.example.weatheronsteroids.utils.string
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,25 +31,25 @@ class AirPollutionForecastAdapter(
         val responseList = list[position]
 
         holder.time.text =
-            "${context.resources.getString(R.string.time)} ${epochToDate(responseList.dt)}"
+            "${context.string(R.string.time)} ${epochToDate(responseList.dt)}"
         holder.airRate.text =
-            "${context.resources.getString(R.string.air_rate)} ${responseList.airPollutionMain.aqi}"
+            "${context.string(R.string.air_rate)} ${responseList.airPollutionMain.aqi}"
         holder.co.text =
-            "${context.resources.getString(R.string.co_rate)} ${responseList.airPollutionComponents.co}"
+            "${context.string(R.string.co_rate)} ${responseList.airPollutionComponents.co}"
         holder.no.text =
-            "${context.resources.getString(R.string.no_rate)} ${responseList.airPollutionComponents.no}"
+            "${context.string(R.string.no_rate)} ${responseList.airPollutionComponents.no}"
         holder.no2.text =
-            "${context.resources.getString(R.string.no2_rate)} ${responseList.airPollutionComponents.no2}"
+            "${context.string(R.string.no2_rate)} ${responseList.airPollutionComponents.no2}"
         holder.o3.text =
-            "${context.resources.getString(R.string.o3_rate)} ${responseList.airPollutionComponents.o3}"
+            "${context.string(R.string.o3_rate)} ${responseList.airPollutionComponents.o3}"
         holder.so2.text =
-            "${context.resources.getString(R.string.so2_rate)} ${responseList.airPollutionComponents.so2}"
+            "${context.string(R.string.so2_rate)} ${responseList.airPollutionComponents.so2}"
         holder.pm25.text =
-            "${context.resources.getString(R.string.pm25_rate)} ${responseList.airPollutionComponents.pm2_5}"
+            "${context.string(R.string.pm25_rate)} ${responseList.airPollutionComponents.pm2_5}"
         holder.pm10.text =
-            "${context.resources.getString(R.string.pm10_rate)} ${responseList.airPollutionComponents.pm10}"
+            "${context.string(R.string.pm10_rate)} ${responseList.airPollutionComponents.pm10}"
         holder.nh3.text =
-            "${context.resources.getString(R.string.nh3_rate)} ${responseList.airPollutionComponents.nh3}"
+            "${context.string(R.string.nh3_rate)} ${responseList.airPollutionComponents.nh3}"
     }
 
     override fun getItemCount(): Int {

@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
+import com.example.weatheronsteroids.utils.string
 import com.google.android.material.textfield.TextInputEditText
 import moxy.MvpAppCompatFragment
 import javax.inject.Inject
@@ -57,11 +58,11 @@ class SettingsFragment : MvpAppCompatFragment(R.layout.fragment_settings), Setti
 
         launchCount = requireActivity().findViewById(R.id.launch_count)
         launchCount.text =
-            "${resources.getString(R.string.app_launch_count)} ${presenter.getLaunchCount()}"
+            "${context?.string(R.string.app_launch_count)} ${presenter.getLaunchCount()}"
 
         timeCount = requireActivity().findViewById(R.id.time_count)
         timeCount.text =
-            "${resources.getString(R.string.app_time_count)} ${presenter.humanTime()}"
+            "${context?.string(R.string.app_time_count)} ${presenter.humanTime()}"
     }
 
     override fun hideMessage() {

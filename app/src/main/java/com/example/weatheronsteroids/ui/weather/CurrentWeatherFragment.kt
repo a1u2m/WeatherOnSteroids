@@ -2,9 +2,7 @@ package com.example.weatheronsteroids.ui.weather
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -12,6 +10,7 @@ import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.Response
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
+import com.example.weatheronsteroids.utils.string
 import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -22,7 +21,8 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_weather), CurrentWeatherView {
+class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_weather),
+    CurrentWeatherView {
 
     private val TAG = "CurrentWeatherFragment"
 
@@ -125,7 +125,7 @@ class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_we
 
     override fun greetUser(name: String) {
         greetings.text =
-            "${getGreeting()} ${if (name != "user_name_key") name else resources.getString(R.string.user)}"
+            "${getGreeting()} ${if (name != "user_name_key") name else context?.string(R.string.user)}"
         greetings.show()
         hideGreetings()
     }

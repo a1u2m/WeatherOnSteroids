@@ -1,9 +1,7 @@
 package com.example.weatheronsteroids.ui.airpollution
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
@@ -90,10 +88,6 @@ class AirPollutionFragment : MvpAppCompatFragment(R.layout.fragment_air_pollutio
             else -> "Не удалось получить рейтинг"
         }
     }
-
-//    override fun showToast() {
-//        Toast.makeText(context, resources.getString(R.string.error), Toast.LENGTH_LONG).show()
-//    }
 
     override fun hideProgressBar() {
         loading.visibility = View.GONE
