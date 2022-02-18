@@ -12,20 +12,22 @@ import com.example.weatheronsteroids.ui.weather.CurrentWeatherFragment
 import com.example.weatheronsteroids.ui.weatherforecast.WeatherForecastFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import moxy.MvpAppCompatActivity
+import javax.inject.Inject
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
     private val TAG = "MainActivity"
 
-    lateinit var presenter: MainPresenter
-
     var fragment = Fragment()
     private lateinit var bottomPanel: BottomNavigationView
+
+    @Inject
+    lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        presenter = (application as App).appComponent.getMainActivityPresenter()
+        (application as App).appComponent.inject(this)
         init()
         countLaunch()
     }

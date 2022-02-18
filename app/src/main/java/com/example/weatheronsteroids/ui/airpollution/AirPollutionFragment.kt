@@ -10,6 +10,7 @@ import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.CurrentAirPollution
 import moxy.MvpAppCompatFragment
+import javax.inject.Inject
 
 class AirPollutionFragment : MvpAppCompatFragment(R.layout.fragment_air_pollution), AirPollutionView {
 
@@ -27,11 +28,12 @@ class AirPollutionFragment : MvpAppCompatFragment(R.layout.fragment_air_pollutio
     lateinit var progressBar: ProgressBar
     lateinit var loading: AppCompatTextView
 
-    private lateinit var presenter: AirPollutionPresenter
+    @Inject
+    lateinit var presenter: AirPollutionPresenter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter = (activity?.application as App).appComponent.getAirPollutionPresenter()
+        (activity?.application as App).appComponent.inject(this)
         init()
         presenter.setupFlowable()
     }

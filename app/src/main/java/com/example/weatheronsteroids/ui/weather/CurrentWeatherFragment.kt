@@ -20,6 +20,7 @@ import io.reactivex.rxjava3.subscribers.DisposableSubscriber
 import moxy.MvpAppCompatFragment
 import java.util.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_weather), CurrentWeatherView {
 
@@ -36,11 +37,12 @@ class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_we
     lateinit var progressBar: ProgressBar
     lateinit var greetings: SecretTextView
 
-    private lateinit var presenter: CurrentWeatherPresenter
+    @Inject
+    lateinit var presenter: CurrentWeatherPresenter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter = (activity?.application as App).appComponent.getCurrentWeatherPresenter()
+        (activity?.application as App).appComponent.inject(this)
         init()
         presenter.isCanGreet()
         presenter.setupFlowable()

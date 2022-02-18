@@ -12,6 +12,7 @@ import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.Response
 import moxy.MvpAppCompatFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import javax.inject.Inject
 
 class WeatherForecastFragment : MvpAppCompatFragment(R.layout.fragment_weather_forecast), WeatherForecastView {
 
@@ -25,11 +26,12 @@ class WeatherForecastFragment : MvpAppCompatFragment(R.layout.fragment_weather_f
     private val forecastList = mutableListOf<Response>()
     private var dateList = mutableListOf<String>()
 
+    @Inject
     lateinit var presenter: WeatherForecastPresenter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter = (activity?.application as App).appComponent.getWeatherForecastPresenter()
+        (activity?.application as App).appComponent.inject(this)
         init()
         presenter.setupFlowable()
     }

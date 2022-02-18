@@ -12,6 +12,7 @@ import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.google.android.material.textfield.TextInputEditText
 import moxy.MvpAppCompatFragment
+import javax.inject.Inject
 
 class SettingsFragment : MvpAppCompatFragment(R.layout.fragment_settings), SettingsView {
 
@@ -23,11 +24,12 @@ class SettingsFragment : MvpAppCompatFragment(R.layout.fragment_settings), Setti
     private lateinit var launchCount: AppCompatTextView
     private lateinit var timeCount: AppCompatTextView
 
+    @Inject
     lateinit var presenter: SettingsPresenter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter = (activity?.application as App).appComponent.getSettingsPresenter()
+        (activity?.application as App).appComponent.inject(this)
         init()
     }
 
