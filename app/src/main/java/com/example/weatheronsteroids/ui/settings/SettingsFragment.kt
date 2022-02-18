@@ -5,7 +5,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.di.App
+import com.example.weatheronsteroids.app.App
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.example.weatheronsteroids.utils.string
 import com.google.android.material.textfield.TextInputEditText

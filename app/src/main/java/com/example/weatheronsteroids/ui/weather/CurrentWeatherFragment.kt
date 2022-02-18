@@ -6,7 +6,7 @@ import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.di.App
+import com.example.weatheronsteroids.app.App
 import com.example.weatheronsteroids.model.Response
 import com.example.weatheronsteroids.utils.gone
 import com.example.weatheronsteroids.utils.load

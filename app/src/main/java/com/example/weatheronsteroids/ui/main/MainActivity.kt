@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.di.App
+import com.example.weatheronsteroids.app.App
 import com.example.weatheronsteroids.ui.airpollution.AirPollutionFragment
 import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastFragment
 import com.example.weatheronsteroids.ui.settings.SettingsFragment

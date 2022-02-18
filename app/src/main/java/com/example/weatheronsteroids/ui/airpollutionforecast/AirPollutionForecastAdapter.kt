@@ -30,56 +30,58 @@ class AirPollutionForecastAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val responseList = list[position]
 
-        holder.time.text = String.format(
-            "%s %s",
-            context.string(R.string.time), epochToDate(responseList.dt)
-        )
+        with(holder) {
+            time.text = String.format(
+                "%s %s",
+                context.string(R.string.time), epochToDate(responseList.dt)
+            )
 
-        holder.airRate.text = String.format(
-            "%s %s",
-            holder.airRate.text,
-            responseList.airPollutionMain.aqi
-        )
+            airRate.text = String.format(
+                "%s %s",
+                holder.airRate.text,
+                responseList.airPollutionMain.aqi
+            )
 
-        holder.co.text = String.format(
-            "%s %s",
-            holder.co.text, responseList.airPollutionComponents.co
-        )
+            co.text = String.format(
+                "%s %s",
+                holder.co.text, responseList.airPollutionComponents.co
+            )
 
-        holder.no.text = String.format(
-            "%s %s",
-            holder.no.text, responseList.airPollutionComponents.no
-        )
+            no.text = String.format(
+                "%s %s",
+                holder.no.text, responseList.airPollutionComponents.no
+            )
 
-        holder.no2.text = String.format(
-            "%s %s",
-            holder.no2.text, responseList.airPollutionComponents.no2
-        )
+            no2.text = String.format(
+                "%s %s",
+                holder.no2.text, responseList.airPollutionComponents.no2
+            )
 
-        holder.o3.text = String.format(
-            "%s %s",
-            holder.o3.text, responseList.airPollutionComponents.o3
-        )
+            o3.text = String.format(
+                "%s %s",
+                holder.o3.text, responseList.airPollutionComponents.o3
+            )
 
-        holder.so2.text = String.format(
-            "%s %s",
-            holder.so2.text, responseList.airPollutionComponents.so2
-        )
+            so2.text = String.format(
+                "%s %s",
+                holder.so2.text, responseList.airPollutionComponents.so2
+            )
 
-        holder.pm25.text = String.format(
-            "%s %s",
-            holder.pm25.text, responseList.airPollutionComponents.pm2_5
-        )
+            pm25.text = String.format(
+                "%s %s",
+                holder.pm25.text, responseList.airPollutionComponents.pm2_5
+            )
 
-        holder.pm10.text = String.format(
-            "%s %s",
-            holder.pm10.text, responseList.airPollutionComponents.pm10
-        )
+            pm10.text = String.format(
+                "%s %s",
+                holder.pm10.text, responseList.airPollutionComponents.pm10
+            )
 
-        holder.nh3.text = String.format(
-            "%s %s",
-            holder.nh3.text, responseList.airPollutionComponents.nh3
-        )
+            nh3.text = String.format(
+                "%s %s",
+                holder.nh3.text, responseList.airPollutionComponents.nh3
+            )
+        }
     }
 
     override fun getItemCount(): Int = list.size

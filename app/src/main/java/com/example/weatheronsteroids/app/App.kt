@@ -1,6 +1,8 @@
-package com.example.weatheronsteroids.di
+package com.example.weatheronsteroids.app
 
 import android.app.Application
+import com.example.weatheronsteroids.di.AppComponent
+import com.example.weatheronsteroids.di.DaggerAppComponent
 import com.example.weatheronsteroids.di.sharedpreferences.SharedPreferencesHelperModule
 
 class App: Application() {
@@ -9,8 +11,7 @@ class App: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent
-            .builder()
+        appComponent = DaggerAppComponent.builder()
             .sharedPreferencesHelperModule(SharedPreferencesHelperModule(this))
             .build()
     }

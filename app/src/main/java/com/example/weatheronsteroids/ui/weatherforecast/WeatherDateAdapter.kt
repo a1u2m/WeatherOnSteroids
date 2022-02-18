@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
-import com.example.weatheronsteroids.di.App
+import com.example.weatheronsteroids.app.App
 import com.example.weatheronsteroids.utils.string
 import javax.inject.Inject
 
@@ -36,10 +36,12 @@ class WeatherDateAdapter(private val context: Context, val list: List<String>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val date = list[position]
 
-        holder.timeAndDate.text = String.format(
-            "%s %s",
-            context.string(R.string.date), date
-        )
+        with(holder) {
+            timeAndDate.text = String.format(
+                "%s %s",
+                context.string(R.string.date), date
+            )
+        }
     }
 
     override fun getItemCount(): Int = list.size

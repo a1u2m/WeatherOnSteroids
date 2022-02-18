@@ -29,44 +29,46 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
         val pictureLink =
             "https://openweathermap.org/img/wn/${responseList.weather[0].icon}@2x.png"
 
-        holder.time.text = String.format(
-            "%s %s",
-            context.string(R.string.time), transformDateToRussian(responseList)
-        )
+        with(holder) {
+            time.text = String.format(
+                "%s %s",
+                context.string(R.string.time), transformDateToRussian(responseList)
+            )
 
-        holder.description.text = String.format(
-            "%s %s",
-            holder.description.text, responseList.weather[0].description.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(
-                    Locale.getDefault()
-                ) else it.toString()
-            }
-        )
+            description.text = String.format(
+                "%s %s",
+                holder.description.text, responseList.weather[0].description.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(
+                        Locale.getDefault()
+                    ) else it.toString()
+                }
+            )
 
-        holder.temp.text = String.format(
-            "%s %s°C",
-            holder.temp.text, responseList.main.temp
-        )
+            temp.text = String.format(
+                "%s %s°C",
+                holder.temp.text, responseList.main.temp
+            )
 
-        holder.feelsLike.text = String.format(
-            "%s %s°C",
-            holder.feelsLike.text, responseList.main.feelsLike
-        )
+            feelsLike.text = String.format(
+                "%s %s°C",
+                holder.feelsLike.text, responseList.main.feelsLike
+            )
 
-        holder.pressure.text = String.format(
-            "%s %s мм рт. ст.",
-            holder.pressure.text, responseList.main.pressure
-        )
+            pressure.text = String.format(
+                "%s %s мм рт. ст.",
+                holder.pressure.text, responseList.main.pressure
+            )
 
-        holder.humidity.text = String.format(
-            "%s %s%%",
-            holder.humidity.text, responseList.main.humidity
-        )
+            humidity.text = String.format(
+                "%s %s%%",
+                holder.humidity.text, responseList.main.humidity
+            )
 
-        holder.speed.text = String.format(
-            "%s %s м/с",
-            holder.speed.text, responseList.wind.speed
-        )
+            speed.text = String.format(
+                "%s %s м/с",
+                holder.speed.text, responseList.wind.speed
+            )
+        }
 
         load(pictureLink, holder.icon)
     }
