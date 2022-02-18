@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.AirQualityAndComponents
+import com.example.weatheronsteroids.utils.gone
 import moxy.MvpAppCompatFragment
 import javax.inject.Inject
 
@@ -59,8 +60,8 @@ class AirPollutionForecastFragment : MvpAppCompatFragment(R.layout.fragment_air_
     }
 
     override fun hideProgressBar() {
-        loading.visibility = View.GONE
-        progressBar.visibility = View.GONE
+        loading.gone()
+        progressBar.gone()
     }
 
     override fun setAdapter() {

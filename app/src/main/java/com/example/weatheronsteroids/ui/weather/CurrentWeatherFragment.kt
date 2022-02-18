@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.Response
+import com.example.weatheronsteroids.utils.gone
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.example.weatheronsteroids.utils.string
 import com.squareup.picasso.Picasso
@@ -119,8 +120,8 @@ class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_we
     }
 
     override fun hideProgressBar() {
-        loading.visibility = View.GONE
-        progressBar.visibility = View.GONE
+        loading.gone()
+        progressBar.gone()
     }
 
     override fun greetUser(name: String) {

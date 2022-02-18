@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.CurrentAirPollution
+import com.example.weatheronsteroids.utils.gone
 import moxy.MvpAppCompatFragment
 import javax.inject.Inject
 
@@ -90,7 +91,7 @@ class AirPollutionFragment : MvpAppCompatFragment(R.layout.fragment_air_pollutio
     }
 
     override fun hideProgressBar() {
-        loading.visibility = View.GONE
-        progressBar.visibility = View.GONE
+        loading.gone()
+        progressBar.gone()
     }
 }

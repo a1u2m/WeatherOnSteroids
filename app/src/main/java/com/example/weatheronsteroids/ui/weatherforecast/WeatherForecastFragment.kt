@@ -10,6 +10,7 @@ import com.example.weatheronsteroids.di.App
 import com.example.weatheronsteroids.model.Response
 import moxy.MvpAppCompatFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.weatheronsteroids.utils.gone
 import javax.inject.Inject
 
 class WeatherForecastFragment : MvpAppCompatFragment(R.layout.fragment_weather_forecast), WeatherForecastView {
@@ -61,8 +62,8 @@ class WeatherForecastFragment : MvpAppCompatFragment(R.layout.fragment_weather_f
     }
 
     override fun hideProgressBar() {
-        loading.visibility = View.GONE
-        progressBar.visibility = View.GONE
+        loading.gone()
+        progressBar.gone()
     }
 
     override fun setAdapter() {
