@@ -2,9 +2,11 @@ package com.example.weatheronsteroids.ui.airpollution
 
 import android.content.Context
 import android.util.Log
+import com.example.weatheronsteroids.app.App
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.model.CurrentAirPollution
 import com.example.weatheronsteroids.network.RetrofitHelper
+import com.example.weatheronsteroids.ui.main.Injectable
 import com.example.weatheronsteroids.utils.showError
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -15,11 +17,17 @@ import javax.inject.Inject
 
 class AirPollutionPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
-    val retrofitHelper: RetrofitHelper,
     val context: Context
-) : MvpPresenter<AirPollutionView>() {
+) : MvpPresenter<AirPollutionView>(), Injectable {
+
+    @Inject
+    lateinit var retrofitHelper: RetrofitHelper
 
     private val TAG = "AirPollutionPresenter"
+
+    init {
+        (context.applicationContext as App).appComponent.inject(this)
+    }
 
     fun setupFlowable() {
         val flowable: Flowable<CurrentAirPollution> =

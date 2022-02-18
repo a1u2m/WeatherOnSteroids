@@ -4,6 +4,7 @@ import com.example.weatheronsteroids.di.sharedpreferences.SharedPreferencesHelpe
 import com.example.weatheronsteroids.ui.airpollution.AirPollutionFragment
 import com.example.weatheronsteroids.ui.airpollutionforecast.AirDateAdapter
 import com.example.weatheronsteroids.ui.airpollutionforecast.AirPollutionForecastFragment
+import com.example.weatheronsteroids.ui.main.Injectable
 import com.example.weatheronsteroids.ui.main.MainActivity
 import com.example.weatheronsteroids.ui.settings.SettingsFragment
 import com.example.weatheronsteroids.ui.weather.CurrentWeatherFragment
@@ -34,6 +35,6 @@ interface AppComponent {
 
     fun inject(adapter: WeatherDateAdapter)
 
-
+    fun inject(presenter: Injectable)
 
 }

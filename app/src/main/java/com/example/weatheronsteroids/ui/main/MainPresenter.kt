@@ -2,7 +2,6 @@ package com.example.weatheronsteroids.ui.main
 
 import android.util.Log
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
-import com.example.weatheronsteroids.network.RetrofitHelper
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import moxy.MvpPresenter
@@ -10,8 +9,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
-    val sharedPreferencesHelper: SharedPreferencesHelper,
-    val retrofitHelper: RetrofitHelper
+    val sharedPreferencesHelper: SharedPreferencesHelper
 ) : MvpPresenter<MainView>() {
 
     private val TAG = "MainPresenter"

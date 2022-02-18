@@ -2,11 +2,13 @@ package com.example.weatheronsteroids.ui.weatherforecast
 
 import android.content.Context
 import android.util.Log
+import com.example.weatheronsteroids.app.App
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
 import com.example.weatheronsteroids.di.AppScope
 import com.example.weatheronsteroids.model.Forecast
 import com.example.weatheronsteroids.model.Response
 import com.example.weatheronsteroids.network.RetrofitHelper
+import com.example.weatheronsteroids.ui.main.Injectable
 import com.example.weatheronsteroids.utils.showError
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -18,14 +20,20 @@ import javax.inject.Inject
 @AppScope
 class WeatherForecastPresenter @Inject constructor(
     val sharedPreferencesHelper: SharedPreferencesHelper,
-    val retrofitHelper: RetrofitHelper,
     val context: Context
-) : MvpPresenter<WeatherForecastView>() {
+) : MvpPresenter<WeatherForecastView>(), Injectable {
 
     private val TAG = "WeatherForecastPresenter"
 
+    @Inject
+    lateinit var retrofitHelper: RetrofitHelper
+
     private val dateList = mutableListOf<String>()
     private val dateMap = mutableMapOf<String, List<Response>>()
+
+    init {
+        (context.applicationContext as App).appComponent.inject(this)
+    }
 
     fun setupFlowable() {
         val flowable: Flowable<Forecast> = retrofitHelper.getApi()

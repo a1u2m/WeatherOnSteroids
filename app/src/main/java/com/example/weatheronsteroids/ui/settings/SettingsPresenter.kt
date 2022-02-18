@@ -2,7 +2,6 @@ package com.example.weatheronsteroids.ui.settings
 
 import android.util.Log
 import com.example.weatheronsteroids.data.SharedPreferencesHelper
-import com.example.weatheronsteroids.network.RetrofitHelper
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -12,8 +11,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SettingsPresenter @Inject constructor(
-    val sharedPreferencesHelper: SharedPreferencesHelper,
-    val retrofitHelper: RetrofitHelper
+    val sharedPreferencesHelper: SharedPreferencesHelper
 ) : MvpPresenter<SettingsView>() {
 
     private val TAG = "SettingsPresenter"
