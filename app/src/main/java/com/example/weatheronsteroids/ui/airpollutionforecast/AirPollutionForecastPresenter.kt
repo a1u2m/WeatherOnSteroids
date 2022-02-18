@@ -58,7 +58,8 @@ class AirPollutionForecastPresenter @Inject constructor(
                             val responsesByDate = mutableListOf<AirQualityAndComponents>()
                             for (j in t.airQualityAndComponents.indices) {
                                 if (dateList[i] == epochToDate(t.airQualityAndComponents[j].dt)
-                                        .substring(0, 5)) {
+                                        .substring(0, 5)
+                                ) {
                                     responsesByDate.add(t.airQualityAndComponents[j])
                                 }
                             }
@@ -96,7 +97,7 @@ class AirPollutionForecastPresenter @Inject constructor(
 
     companion object {
         private fun epochToDate(string: String): String {
-            val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+            val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault())
             val netDate = Date(string.toLong() * 1000)
             return sdf.format(netDate)
         }

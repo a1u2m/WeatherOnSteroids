@@ -26,7 +26,7 @@ fun ProgressBar.gone() {
     visibility = View.GONE
 }
 
-fun AppCompatImageView.load(pictureLink: String, icon: AppCompatImageView) {
+fun load(pictureLink: String, icon: AppCompatImageView) {
     Picasso.get()
         .load(pictureLink)
         .error(R.drawable.ic_weather_placeholder)

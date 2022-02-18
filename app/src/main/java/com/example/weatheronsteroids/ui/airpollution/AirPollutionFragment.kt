@@ -11,7 +11,8 @@ import com.example.weatheronsteroids.utils.gone
 import moxy.MvpAppCompatFragment
 import javax.inject.Inject
 
-class AirPollutionFragment : MvpAppCompatFragment(R.layout.fragment_air_pollution), AirPollutionView {
+class AirPollutionFragment : MvpAppCompatFragment(R.layout.fragment_air_pollution),
+    AirPollutionView {
 
     private val TAG = "AirPollutionFragment"
 
@@ -58,25 +59,53 @@ class AirPollutionFragment : MvpAppCompatFragment(R.layout.fragment_air_pollutio
     }
 
     override fun fillViews(t: CurrentAirPollution) {
-        airRate.text =
-            "${airRate.text} ${t?.airQualityAndComponents?.get(0)?.airPollutionMain?.aqi} (${
-                t?.airQualityAndComponents?.get(0)?.airPollutionMain?.aqi?.let {
-                    getRate(
-                        it
-                    )
-                }
-            })"
+        airRate.text = String.format(
+            "%s %s (%s)",
+            airRate.text,
+            t.airQualityAndComponents[0].airPollutionMain.aqi,
+            getRate(t.airQualityAndComponents[0].airPollutionMain.aqi)
+        )
 
-        co.text = "${co.text} ${t?.airQualityAndComponents?.get(0)?.airPollutionComponents?.co}"
-        no.text = "${no.text} ${t?.airQualityAndComponents?.get(0)?.airPollutionComponents?.no}"
-        no2.text = "${no2.text} ${t?.airQualityAndComponents?.get(0)?.airPollutionComponents?.no2}"
-        o3.text = "${o3.text} ${t?.airQualityAndComponents?.get(0)?.airPollutionComponents?.o3}"
-        so2.text = "${so2.text} ${t?.airQualityAndComponents?.get(0)?.airPollutionComponents?.so2}"
-        pm25.text =
-            "${pm25.text} ${t?.airQualityAndComponents?.get(0)?.airPollutionComponents?.pm2_5}"
-        pm10.text =
-            "${pm10.text} ${t?.airQualityAndComponents?.get(0)?.airPollutionComponents?.pm10}"
-        nh3.text = "${nh3.text} ${t?.airQualityAndComponents?.get(0)?.airPollutionComponents?.nh3}"
+        co.text = String.format(
+            "%s %s",
+            co.text, t.airQualityAndComponents[0].airPollutionComponents.co
+        )
+
+        no.text = String.format(
+            "%s %s",
+            no.text, t.airQualityAndComponents[0].airPollutionComponents.no
+        )
+
+        no2.text = String.format(
+            "%s %s",
+            no2.text, t.airQualityAndComponents[0].airPollutionComponents.no2
+        )
+
+        o3.text = String.format(
+            "%s %s",
+            o3.text, t.airQualityAndComponents[0].airPollutionComponents.o3
+        )
+
+        so2.text = String.format(
+            "%s %s",
+            so2.text, t.airQualityAndComponents[0].airPollutionComponents.so2
+        )
+
+        pm25.text = String.format(
+            "%s %s",
+            pm25.text, t.airQualityAndComponents[0].airPollutionComponents.pm2_5
+        )
+
+        pm10.text = String.format(
+            "%s %s",
+            pm10.text, t.airQualityAndComponents[0].airPollutionComponents.pm10
+        )
+
+        nh3.text = String.format(
+            "%s %s",
+            nh3.text, t.airQualityAndComponents[0].airPollutionComponents.nh3
+        )
+
     }
 
     private fun getRate(rate: String): String {

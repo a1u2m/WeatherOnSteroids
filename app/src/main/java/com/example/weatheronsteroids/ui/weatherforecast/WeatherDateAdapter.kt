@@ -36,7 +36,10 @@ class WeatherDateAdapter(private val context: Context, val list: List<String>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val date = list[position]
 
-        holder.timeAndDate.text = "${context.string(R.string.date)} $date"
+        holder.timeAndDate.text = String.format(
+            "%s %s",
+            context.string(R.string.date), date
+        )
     }
 
     override fun getItemCount(): Int {

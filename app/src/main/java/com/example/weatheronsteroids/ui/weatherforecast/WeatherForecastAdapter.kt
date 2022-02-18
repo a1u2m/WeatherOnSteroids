@@ -11,7 +11,7 @@ import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.model.Response
 import com.example.weatheronsteroids.utils.load
 import com.example.weatheronsteroids.utils.string
-import com.squareup.picasso.Picasso
+import java.util.*
 
 class WeatherForecastAdapter(private val context: Context, private val list: List<Response>) :
     RecyclerView.Adapter<WeatherForecastAdapter.ViewHolder>() {
@@ -29,23 +29,46 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
         val pictureLink =
             "https://openweathermap.org/img/wn/${responseList.weather[0].icon}@2x.png"
 
-        holder.time.text = "${context.string(R.string.time)} ${
-            transformDateToRussian(responseList)
-        }"
-        holder.description.text =
-            "${context.resources.getString(R.string.description)} ${responseList.weather[0].description.capitalize()}"
-        holder.temp.text =
-            "${context.resources.getString(R.string.temp)} ${responseList.main.temp}°C"
-        holder.feelsLike.text =
-            "${context.resources.getString(R.string.feels_like)} ${responseList.main.feelsLike}°C"
-        holder.pressure.text =
-            "${context.resources.getString(R.string.pressure)} ${responseList.main.pressure} мм рт. ст."
-        holder.humidity.text =
-            "${context.resources.getString(R.string.humidity)} ${responseList.main.humidity}%"
-        holder.speed.text =
-            "${context.resources.getString(R.string.speed)} ${responseList.wind.speed} м/с"
+        holder.time.text = String.format(
+            "%s %s",
+            context.string(R.string.time), transformDateToRussian(responseList)
+        )
 
-        holder.icon.load(pictureLink, holder.icon)
+        holder.description.text = String.format(
+            "%s %s",
+            holder.description.text, responseList.weather[0].description.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
+        )
+
+        holder.temp.text = String.format(
+            "%s %s°C",
+            holder.temp.text, responseList.main.temp
+        )
+
+        holder.feelsLike.text = String.format(
+            "%s %s°C",
+            holder.feelsLike.text, responseList.main.feelsLike
+        )
+
+        holder.pressure.text = String.format(
+            "%s %s мм рт. ст.",
+            holder.pressure.text, responseList.main.pressure
+        )
+
+        holder.humidity.text = String.format(
+            "%s %s%%",
+            holder.humidity.text, responseList.main.humidity
+        )
+
+        holder.speed.text = String.format(
+            "%s %s м/с",
+            holder.speed.text, responseList.wind.speed
+        )
+
+        load(pictureLink, holder.icon)
     }
 
     override fun getItemCount(): Int {

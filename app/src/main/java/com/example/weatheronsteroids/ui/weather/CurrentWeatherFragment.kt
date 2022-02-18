@@ -2,7 +2,6 @@ package com.example.weatheronsteroids.ui.weather
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -13,7 +12,6 @@ import com.example.weatheronsteroids.utils.gone
 import com.example.weatheronsteroids.utils.load
 import com.example.weatheronsteroids.utils.secrettextview.SecretTextView
 import com.example.weatheronsteroids.utils.string
-import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -103,18 +101,44 @@ class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_we
     }
 
     override fun fillViews(t: Response) {
-        description.text =
-            "${description.text} ${t.weather.get(0).description.capitalize()}"
-        temp.text = "${temp.text} ${t.main.temp}°C"
-        feelsLike.text = "${feelsLike.text} ${t.main.feelsLike}°C"
-        pressure.text = "${pressure.text} ${t.main.pressure} мм рт. ст."
-        humidity.text = "${humidity.text} ${t.main.humidity}%"
-        speed.text = "${speed.text} ${t.wind.speed} м/с"
+        description.text = String.format(
+            "%s %s",
+            description.text, t.weather[0].description.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
+        )
+
+        temp.text = String.format(
+            "%s %s°C",
+            temp.text, t.main.temp
+        )
+
+        feelsLike.text = String.format(
+            "%s %s°C",
+            feelsLike.text, t.main.feelsLike
+        )
+
+        pressure.text = String.format(
+            "%s %s мм рт. ст.",
+            pressure.text, t.main.pressure
+        )
+
+        humidity.text = String.format(
+            "%s %s%%",
+            humidity.text, t.main.humidity
+        )
+
+        speed.text = String.format(
+            "%s %s м/с",
+            speed.text, t.wind.speed
+        )
 
         val pictureLink =
             "https://openweathermap.org/img/wn/${t.weather[0].icon}@2x.png"
 
-        icon.load(pictureLink, icon)
+        load(pictureLink, icon)
     }
 
     override fun hideProgressBar() {
@@ -123,8 +147,9 @@ class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_we
     }
 
     override fun greetUser(name: String) {
-        greetings.text =
+        val greeting =
             "${getGreeting()} ${if (name != "user_name_key") name else context?.string(R.string.user)}"
+        greetings.text = greeting
         greetings.show()
         hideGreetings()
     }

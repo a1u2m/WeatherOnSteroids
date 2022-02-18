@@ -30,26 +30,56 @@ class AirPollutionForecastAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val responseList = list[position]
 
-        holder.time.text =
-            "${context.string(R.string.time)} ${epochToDate(responseList.dt)}"
-        holder.airRate.text =
-            "${context.string(R.string.air_rate)} ${responseList.airPollutionMain.aqi}"
-        holder.co.text =
-            "${context.string(R.string.co_rate)} ${responseList.airPollutionComponents.co}"
-        holder.no.text =
-            "${context.string(R.string.no_rate)} ${responseList.airPollutionComponents.no}"
-        holder.no2.text =
-            "${context.string(R.string.no2_rate)} ${responseList.airPollutionComponents.no2}"
-        holder.o3.text =
-            "${context.string(R.string.o3_rate)} ${responseList.airPollutionComponents.o3}"
-        holder.so2.text =
-            "${context.string(R.string.so2_rate)} ${responseList.airPollutionComponents.so2}"
-        holder.pm25.text =
-            "${context.string(R.string.pm25_rate)} ${responseList.airPollutionComponents.pm2_5}"
-        holder.pm10.text =
-            "${context.string(R.string.pm10_rate)} ${responseList.airPollutionComponents.pm10}"
-        holder.nh3.text =
-            "${context.string(R.string.nh3_rate)} ${responseList.airPollutionComponents.nh3}"
+        holder.time.text = String.format(
+            "%s %s",
+            context.string(R.string.time), epochToDate(responseList.dt)
+        )
+
+        holder.airRate.text = String.format(
+            "%s %s",
+            holder.airRate.text,
+            responseList.airPollutionMain.aqi
+        )
+
+        holder.co.text = String.format(
+            "%s %s",
+            holder.co.text, responseList.airPollutionComponents.co
+        )
+
+        holder.no.text = String.format(
+            "%s %s",
+            holder.no.text, responseList.airPollutionComponents.no
+        )
+
+        holder.no2.text = String.format(
+            "%s %s",
+            holder.no2.text, responseList.airPollutionComponents.no2
+        )
+
+        holder.o3.text = String.format(
+            "%s %s",
+            holder.o3.text, responseList.airPollutionComponents.o3
+        )
+
+        holder.so2.text = String.format(
+            "%s %s",
+            holder.so2.text, responseList.airPollutionComponents.so2
+        )
+
+        holder.pm25.text = String.format(
+            "%s %s",
+            holder.pm25.text, responseList.airPollutionComponents.pm2_5
+        )
+
+        holder.pm10.text = String.format(
+            "%s %s",
+            holder.pm10.text, responseList.airPollutionComponents.pm10
+        )
+
+        holder.nh3.text = String.format(
+            "%s %s",
+            holder.nh3.text, responseList.airPollutionComponents.nh3
+        )
     }
 
     override fun getItemCount(): Int {
@@ -57,7 +87,7 @@ class AirPollutionForecastAdapter(
     }
 
     private fun epochToDate(string: String): String {
-        val sdf = SimpleDateFormat("HH:mm:ss")
+        val sdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
         val time = Date(string.toLong() * 1000)
         return sdf.format(time)
     }
