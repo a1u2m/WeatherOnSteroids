@@ -103,7 +103,7 @@ class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_we
     override fun fillViews(t: Response) {
         description.text = String.format(
             "%s %s",
-            description.text, t.weather[0].description.replaceFirstChar {
+            description.text, t.weather?.get(0)?.description?.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(
                     Locale.getDefault()
                 ) else it.toString()
@@ -112,31 +112,31 @@ class CurrentWeatherFragment : MvpAppCompatFragment(R.layout.fragment_current_we
 
         temp.text = String.format(
             "%s %s°C",
-            temp.text, t.main.temp
+            context?.string(R.string.temp), t.main?.temp
         )
 
         feelsLike.text = String.format(
             "%s %s°C",
-            feelsLike.text, t.main.feelsLike
+            context?.string(R.string.feels_like), t.main?.feels_like
         )
 
         pressure.text = String.format(
             "%s %s мм рт. ст.",
-            pressure.text, t.main.pressure
+            context?.string(R.string.pressure), t.main?.pressure
         )
 
         humidity.text = String.format(
             "%s %s%%",
-            humidity.text, t.main.humidity
+            context?.string(R.string.humidity), t.main?.humidity
         )
 
         speed.text = String.format(
             "%s %s м/с",
-            speed.text, t.wind.speed
+            context?.string(R.string.speed), t.wind?.speed
         )
 
         val pictureLink =
-            "https://openweathermap.org/img/wn/${t.weather[0].icon}@2x.png"
+            "https://openweathermap.org/img/wn/${t.weather?.get(0)?.icon}@2x.png"
 
         load(pictureLink, icon)
     }

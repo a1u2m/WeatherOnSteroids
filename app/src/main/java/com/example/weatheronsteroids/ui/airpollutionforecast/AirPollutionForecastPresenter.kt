@@ -52,33 +52,37 @@ class AirPollutionForecastPresenter @Inject constructor(
                 override fun onNext(t: CurrentAirPollution?) {
                     if (t != null) {
 
-                        //получаю даты
-                        for (i in t.airQualityAndComponents.indices) {
-                            val date = epochToDate(t.airQualityAndComponents[i].dt)
-                                .substring(0, 5)
-                            if (dateList.contains(date)) continue
-                            dateList.add(date)
-                        }
+                        kotlin.runCatching {
+                            //получаю даты
+                            for (i in t.list?.indices!!) {
+                                val date = epochToDate(t.list!![i].dt!!)
+                                    .substring(0, 5)
+                                if (dateList.contains(date)) continue
+                                dateList.add(date)
+                            }
 
-                        //сую в мапу респонсы по их датам, чтоб в каждую дату были только свои респонсы
-                        var count = 0
-                        for (i in dateList.indices) {
-                            val responsesByDate = mutableListOf<AirQualityAndComponents>()
-                            for (j in t.airQualityAndComponents.indices) {
-                                if (dateList[i] == epochToDate(t.airQualityAndComponents[j].dt)
-                                        .substring(0, 5)
-                                ) {
-                                    responsesByDate.add(t.airQualityAndComponents[j])
+                            //сую в мапу респонсы по их датам, чтоб в каждую дату были только свои респонсы
+                            var count = 0
+                            for (i in dateList.indices) {
+                                val responsesByDate = mutableListOf<AirQualityAndComponents>()
+                                for (j in t.list?.indices!!) {
+                                    if (dateList[i] == epochToDate(t.list!![j].dt!!)
+                                            .substring(0, 5)
+                                    ) {
+                                        responsesByDate.add(t.list!![j])
+                                    }
+                                }
+                                dateMap[dateList[i]] = responsesByDate
+                                if (count == 0) {
+                                    viewState.fillViews(responsesByDate) //отправляю нужный список в фрагмент, чтобы отрисовались данные по текущей дате
+                                    count++
                                 }
                             }
-                            dateMap[dateList[i]] = responsesByDate
-                            if (count == 0) {
-                                viewState.fillViews(responsesByDate) //отправляю нужный список в фрагмент, чтобы отрисовались данные по текущей дате
-                                count++
-                            }
-                        }
 
-                        viewState.fillDates(dateMap.keys)
+                            viewState.fillDates(dateMap.keys)
+                        }.onFailure {
+                            showError(context)
+                        }
                     }
                 }
 

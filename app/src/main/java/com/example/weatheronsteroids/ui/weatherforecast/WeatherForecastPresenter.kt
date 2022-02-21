@@ -51,30 +51,37 @@ class WeatherForecastPresenter @Inject constructor(
                 override fun onNext(t: Forecast?) {
                     if (t != null) {
 
-                        //получаю даты
-                        for (i in t.response.indices) {
-                            val date = transformDateToRussian(t.response[i].dt_txt).substring(0, 5)
-                            if (dateList.contains(date)) continue
-                            dateList.add(date)
-                        }
+                        kotlin.runCatching {
+                            //получаю даты
+                            for (i in t.list?.indices!!) {
+                                val date =
+                                    transformDateToRussian(t.list!![i].dt_txt!!).substring(0, 5)
+                                if (dateList.contains(date)) continue
+                                dateList.add(date)
+                            }
 
-                        //сую в мапу респонсы по их датам, чтоб в каждую дату были только свои респонсы
-                        var count = 0
-                        for (i in dateList.indices) {
-                            val responsesByDate = mutableListOf<Response>()
-                            for (j in t.response.indices) {
-                                if (dateList[i] == transformDateToRussian(t.response[j].dt_txt).substring(0, 5)) {
-                                    responsesByDate.add(t.response[j])
+                            //сую в мапу респонсы по их датам, чтоб в каждую дату были только свои респонсы
+                            var count = 0
+                            for (i in dateList.indices) {
+                                val responsesByDate = mutableListOf<Response>()
+                                for (j in t.list!!.indices) {
+                                    if (dateList[i] == transformDateToRussian(t.list!![j].dt_txt!!)
+                                            .substring(0, 5)
+                                    ) {
+                                        responsesByDate.add(t.list!![j])
+                                    }
+                                }
+                                dateMap[dateList[i]] = responsesByDate
+                                if (count == 0) {
+                                    viewState.fillViews(responsesByDate) //отправляю нужный список в фрагмент, чтобы отрисовались данные по текущей дате
+                                    count++
                                 }
                             }
-                            dateMap[dateList[i]] = responsesByDate
-                            if (count == 0) {
-                                viewState.fillViews(responsesByDate) //отправляю нужный список в фрагмент, чтобы отрисовались данные по текущей дате
-                                count++
-                            }
-                        }
 
-                        viewState.fillDates(dateMap.keys)
+                            viewState.fillDates(dateMap.keys)
+                        }.onFailure {
+                            showError(context)
+                        }
                     }
                 }
 

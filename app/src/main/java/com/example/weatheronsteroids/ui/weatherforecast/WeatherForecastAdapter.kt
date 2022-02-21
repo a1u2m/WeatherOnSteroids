@@ -27,7 +27,7 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
         val responseList = list[position]
 
         val pictureLink =
-            "https://openweathermap.org/img/wn/${responseList.weather[0].icon}@2x.png"
+            "https://openweathermap.org/img/wn/${responseList.weather?.get(0)?.icon}@2x.png"
 
         with(holder) {
             time.text = String.format(
@@ -37,7 +37,7 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
 
             description.text = String.format(
                 "%s %s",
-                holder.description.text, responseList.weather[0].description.replaceFirstChar {
+                holder.description.text, responseList.weather?.get(0)?.description?.replaceFirstChar {
                     if (it.isLowerCase()) it.titlecase(
                         Locale.getDefault()
                     ) else it.toString()
@@ -46,27 +46,27 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
 
             temp.text = String.format(
                 "%s %s°C",
-                context.string(R.string.temp), responseList.main.temp
+                context.string(R.string.temp), responseList.main?.temp
             )
 
             feelsLike.text = String.format(
                 "%s %s°C",
-                context.string(R.string.feels_like), responseList.main.feelsLike
+                context.string(R.string.feels_like), responseList.main?.feels_like
             )
 
             pressure.text = String.format(
                 "%s %s мм рт. ст.",
-                context.string(R.string.pressure), responseList.main.pressure
+                context.string(R.string.pressure), responseList.main?.pressure
             )
 
             humidity.text = String.format(
                 "%s %s%%",
-                context.string(R.string.humidity), responseList.main.humidity
+                context.string(R.string.humidity), responseList.main?.humidity
             )
 
             speed.text = String.format(
                 "%s %s м/с",
-                context.string(R.string.speed), responseList.wind.speed
+                context.string(R.string.speed), responseList.wind?.speed
             )
         }
 
@@ -78,7 +78,7 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
     private fun transformDateToRussian(responseList: Response): StringBuilder {
         val sb = StringBuilder()
         val timeAndDate = responseList.dt_txt
-        val time = timeAndDate.substring(11)
+        val time = timeAndDate?.substring(11)
         sb.append(time)
         return sb
     }

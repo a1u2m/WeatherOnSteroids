@@ -7,6 +7,7 @@ import com.example.weatheronsteroids.R
 import com.example.weatheronsteroids.app.App
 import com.example.weatheronsteroids.model.CurrentAirPollution
 import com.example.weatheronsteroids.utils.gone
+import com.example.weatheronsteroids.utils.string
 import moxy.MvpAppCompatFragment
 import javax.inject.Inject
 
@@ -58,51 +59,53 @@ class AirPollutionFragment : MvpAppCompatFragment(R.layout.fragment_air_pollutio
     }
 
     override fun fillViews(t: CurrentAirPollution) {
-        airRate.text = String.format(
-            "%s %s (%s)",
-            airRate.text,
-            t.airQualityAndComponents[0].airPollutionMain.aqi,
-            getRate(t.airQualityAndComponents[0].airPollutionMain.aqi)
-        )
+        airRate.text = t.list?.get(0)?.main?.let { it ->
+            String.format(
+                "%s %s (%s)",
+                airRate.text,
+                it.aqi,
+                t.list!![0].main?.aqi?.let { getRate(it) }
+            )
+        }
 
         co.text = String.format(
             "%s %s",
-            co.text, t.airQualityAndComponents[0].airPollutionComponents.co
+            context?.string(R.string.co_rate), t.list?.get(0)?.components?.co
         )
 
         no.text = String.format(
             "%s %s",
-            no.text, t.airQualityAndComponents[0].airPollutionComponents.no
+            context?.string(R.string.no_rate), t.list?.get(0)?.components?.no
         )
 
         no2.text = String.format(
             "%s %s",
-            no2.text, t.airQualityAndComponents[0].airPollutionComponents.no2
+            context?.string(R.string.no2_rate), t.list?.get(0)?.components?.no2
         )
 
         o3.text = String.format(
             "%s %s",
-            o3.text, t.airQualityAndComponents[0].airPollutionComponents.o3
+            context?.string(R.string.o3_rate), t.list?.get(0)?.components?.o3
         )
 
         so2.text = String.format(
             "%s %s",
-            so2.text, t.airQualityAndComponents[0].airPollutionComponents.so2
+            context?.string(R.string.so2_rate), t.list?.get(0)?.components?.so2
         )
 
         pm25.text = String.format(
             "%s %s",
-            pm25.text, t.airQualityAndComponents[0].airPollutionComponents.pm2_5
+            context?.string(R.string.pm25_rate), t.list?.get(0)?.components?.pm2_5
         )
 
         pm10.text = String.format(
             "%s %s",
-            pm10.text, t.airQualityAndComponents[0].airPollutionComponents.pm10
+            context?.string(R.string.pm10_rate), t.list?.get(0)?.components?.pm10
         )
 
         nh3.text = String.format(
             "%s %s",
-            nh3.text, t.airQualityAndComponents[0].airPollutionComponents.nh3
+            context?.string(R.string.nh3_rate), t.list?.get(0)?.components?.nh3
         )
 
     }

@@ -1,24 +1,8 @@
 package com.example.weatheronsteroids.model
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
-class Response {
-
-    @SerializedName("weather")
-    @Expose
-    lateinit var weather: List<Weather>
-
-    @SerializedName("main")
-    @Expose
-    lateinit var main: Main
-
-    @SerializedName("wind")
-    @Expose
-    lateinit var wind: Wind
-
-    @SerializedName("dt_txt")
-    @Expose
-    lateinit var dt_txt: String
-
-}
+data class Response(
+    var weather: List<Weather>? = null,
+    var main: Main? = null,
+    var wind: Wind? = null,
+    var dt_txt: String? = null
+)
