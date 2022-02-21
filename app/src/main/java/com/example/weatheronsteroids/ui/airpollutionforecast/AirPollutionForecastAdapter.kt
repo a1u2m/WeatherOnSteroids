@@ -38,48 +38,48 @@ class AirPollutionForecastAdapter(
 
             airRate.text = String.format(
                 "%s %s",
-                holder.airRate.text,
+                context.string(R.string.air_rate),
                 responseList.airPollutionMain.aqi
             )
 
             co.text = String.format(
                 "%s %s",
-                holder.co.text, responseList.airPollutionComponents.co
+                context.string(R.string.co_rate), responseList.airPollutionComponents.co
             )
 
             no.text = String.format(
                 "%s %s",
-                holder.no.text, responseList.airPollutionComponents.no
+                context.string(R.string.no_rate), responseList.airPollutionComponents.no
             )
 
             no2.text = String.format(
                 "%s %s",
-                holder.no2.text, responseList.airPollutionComponents.no2
+                context.string(R.string.no2_rate), responseList.airPollutionComponents.no2
             )
 
             o3.text = String.format(
                 "%s %s",
-                holder.o3.text, responseList.airPollutionComponents.o3
+                context.string(R.string.o3_rate), responseList.airPollutionComponents.o3
             )
 
             so2.text = String.format(
                 "%s %s",
-                holder.so2.text, responseList.airPollutionComponents.so2
+                context.string(R.string.so2_rate), responseList.airPollutionComponents.so2
             )
 
             pm25.text = String.format(
                 "%s %s",
-                holder.pm25.text, responseList.airPollutionComponents.pm2_5
+                context.string(R.string.pm25_rate), responseList.airPollutionComponents.pm2_5
             )
 
             pm10.text = String.format(
                 "%s %s",
-                holder.pm10.text, responseList.airPollutionComponents.pm10
+                context.string(R.string.pm10_rate), responseList.airPollutionComponents.pm10
             )
 
             nh3.text = String.format(
                 "%s %s",
-                holder.nh3.text, responseList.airPollutionComponents.nh3
+                context.string(R.string.nh3_rate), responseList.airPollutionComponents.nh3
             )
         }
     }

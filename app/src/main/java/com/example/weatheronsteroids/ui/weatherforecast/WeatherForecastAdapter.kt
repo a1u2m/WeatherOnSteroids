@@ -46,27 +46,27 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
 
             temp.text = String.format(
                 "%s %s°C",
-                holder.temp.text, responseList.main.temp
+                context.string(R.string.temp), responseList.main.temp
             )
 
             feelsLike.text = String.format(
                 "%s %s°C",
-                holder.feelsLike.text, responseList.main.feelsLike
+                context.string(R.string.feels_like), responseList.main.feelsLike
             )
 
             pressure.text = String.format(
                 "%s %s мм рт. ст.",
-                holder.pressure.text, responseList.main.pressure
+                context.string(R.string.pressure), responseList.main.pressure
             )
 
             humidity.text = String.format(
                 "%s %s%%",
-                holder.humidity.text, responseList.main.humidity
+                context.string(R.string.humidity), responseList.main.humidity
             )
 
             speed.text = String.format(
                 "%s %s м/с",
-                holder.speed.text, responseList.wind.speed
+                context.string(R.string.speed), responseList.wind.speed
             )
         }
 
