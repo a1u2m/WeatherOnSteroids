@@ -89,7 +89,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_current_loading" />
 
-    <com.example.weatheronsteroids.utils.secrettextview.SecretTextView
+    <com.example.weatheronsteroids.presentation.secrettextview.SecretTextView
         android:id="@+id/weather_current_greetings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

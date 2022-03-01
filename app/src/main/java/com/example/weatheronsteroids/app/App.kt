@@ -1,9 +1,8 @@
 package com.example.weatheronsteroids.app
 
 import android.app.Application
-import com.example.weatheronsteroids.di.AppComponent
-import com.example.weatheronsteroids.di.DaggerAppComponent
-import com.example.weatheronsteroids.di.sharedpreferences.SharedPreferencesHelperModule
+import com.example.weatheronsteroids.app.dagger.AppComponent
+import com.example.weatheronsteroids.app.dagger.SharedPreferencesHelperModule
 
 class App: Application() {
 
