@@ -2,6 +2,7 @@ package com.example.weatheronsteroids.app
 
 import android.app.Application
 import com.example.weatheronsteroids.app.dagger.AppComponent
+import com.example.weatheronsteroids.app.dagger.DaggerAppComponent
 import com.example.weatheronsteroids.app.dagger.SharedPreferencesHelperModule
 
 class App: Application() {

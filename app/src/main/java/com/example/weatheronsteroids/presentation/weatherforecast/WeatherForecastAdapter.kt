@@ -37,7 +37,7 @@ class WeatherForecastAdapter(private val context: Context, private val list: Lis
 
             description.text = String.format(
                 "%s %s",
-                holder.description.text, responseList.weather?.get(0)?.description?.replaceFirstChar {
+                context.string(R.string.description), responseList.weather?.get(0)?.description?.replaceFirstChar {
                     if (it.isLowerCase()) it.titlecase(
                         Locale.getDefault()
                     ) else it.toString()

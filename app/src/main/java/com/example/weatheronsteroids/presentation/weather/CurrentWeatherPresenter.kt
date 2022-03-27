@@ -25,10 +25,6 @@ class CurrentWeatherPresenter @Inject constructor(
     @Inject
     lateinit var retrofitHelper: RetrofitHelper
 
-    init {
-        (context.applicationContext as App).appComponent.inject(this)
-    }
-
     fun setupFlowable() {
         val responseFlowable: Flowable<Response> =
             retrofitHelper.getApi()
